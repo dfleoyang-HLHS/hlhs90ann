@@ -108,6 +108,45 @@
   .spec-list li { font-size:11px; color:#6a5a40; padding:0.25rem 0; padding-left:1rem; position:relative; letter-spacing:0.03em; }
   .spec-list li::before { content:'—'; position:absolute; left:0; color:var(--gold); font-size:10px; }
 
+  /* 定價列 */
+  .price-row {
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-top:0.9rem; padding-top:0.8rem;
+    border-top:0.5px solid rgba(200,164,74,0.3);
+  }
+  .price-tag {
+    font-family:'Noto Serif TC',serif;
+    font-size:18px; font-weight:700; color:var(--ink);
+    letter-spacing:0.04em;
+  }
+  .price-tag small { font-size:10px; font-weight:400; color:#9a8060; margin-right:2px; }
+  .qty-tag {
+    font-size:10px; color:#9a8060;
+    letter-spacing:0.1em;
+  }
+  .qty-tag strong { font-size:13px; color:var(--ink-mid); font-weight:600; }
+
+  /* 套餐 */
+  .bundle-mini {
+    margin-top:0.7rem;
+    border-top:0.5px solid rgba(200,164,74,0.3);
+    padding-top:0.7rem;
+  }
+  .bundle-mini-title {
+    font-size:9px; color:var(--gold-dk);
+    letter-spacing:0.18em; font-family:'Noto Serif TC',serif;
+    margin-bottom:5px;
+  }
+  .bundle-mini-items {
+    display:flex; flex-wrap:wrap; gap:4px;
+  }
+  .bundle-chip {
+    font-size:10px; color:#6a5040;
+    background:#f5eedd; border:0.5px solid rgba(200,164,74,0.35);
+    border-radius:99px; padding:2px 8px;
+    letter-spacing:0.03em;
+  }
+
   .section-divider {
     height:1px;
     background:linear-gradient(to right,transparent 5%,rgba(200,164,74,0.35) 30%,rgba(200,164,74,0.35) 70%,transparent 95%);
@@ -260,6 +299,19 @@
         <li>3W LED 暖黃光源</li>
         <li>頂端校徽 × 校慶標語</li>
       </ul>
+      <div class="price-row">
+        <div class="price-tag"><small>NT$</small>3,500</div>
+        <div class="qty-tag">限量 <strong>50</strong> 組</div>
+      </div>
+      <div class="bundle-mini">
+        <div class="bundle-mini-title">✦ 套餐內容</div>
+        <div class="bundle-mini-items">
+          <span class="bundle-chip">紀念夾A款 ×1</span>
+          <span class="bundle-chip">海景明信片 ×1</span>
+          <span class="bundle-chip">兔子扇 ×1</span>
+          <span class="bundle-chip">紀念鑰匙圈 ×1</span>
+        </div>
+      </div>
     </div>
 
     <!-- 作品二 -->
@@ -280,6 +332,20 @@
         <li>矽膠軟蓋密封防漏</li>
         <li>直紋矽膠防燙護墊</li>
       </ul>
+      <div class="price-row">
+        <div class="price-tag"><small>NT$</small>2,000</div>
+        <div class="qty-tag">限量 <strong>50</strong> 組</div>
+      </div>
+      <div class="bundle-mini">
+        <div class="bundle-mini-title">✦ 套餐內容</div>
+        <div class="bundle-mini-items">
+          <span class="bundle-chip">濾掛咖啡包 ×2</span>
+          <span class="bundle-chip">紀念夾A款 ×1</span>
+          <span class="bundle-chip">海景明信片 ×1</span>
+          <span class="bundle-chip">兔子扇 ×1</span>
+          <span class="bundle-chip">紀念鑰匙圈 ×1</span>
+        </div>
+      </div>
     </div>
   </div>
 
