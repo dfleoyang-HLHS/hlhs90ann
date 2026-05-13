@@ -200,7 +200,8 @@
       <div class="product-num">01</div>
       <div class="img-zone" id="zone-1" onclick="triggerUpload(1)">
         <div class="img-zone-inner" id="inner-1">
-          <div class="svg-placeholder" id="svg-1">
+          <img src="qixing.jpg" class="user-photo" id="photo-1" alt="七星石光">
+          <div class="svg-placeholder" id="svg-1" style="display:none">
             <svg width="130" height="170" viewBox="0 0 130 170" xmlns="http://www.w3.org/2000/svg">
               <defs><linearGradient id="p1g" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c8a040" stop-opacity="0.15"/><stop offset="40%" stop-color="#f5f0e0" stop-opacity="0.9"/><stop offset="100%" stop-color="#c8a040" stop-opacity="0.12"/></linearGradient></defs>
               <ellipse cx="65" cy="158" rx="42" ry="7" fill="#C8A44A" opacity="0.18"/>
@@ -260,7 +261,8 @@
       <div class="product-num">02</div>
       <div class="img-zone" id="zone-2" onclick="triggerUpload(2)">
         <div class="img-zone-inner" id="inner-2">
-          <div class="svg-placeholder" id="svg-2">
+          <img src="huahao.jpg" class="user-photo" id="photo-2" alt="花好咖啡">
+          <div class="svg-placeholder" id="svg-2" style="display:none">
             <svg width="120" height="170" viewBox="0 0 120 170" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="p2s" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7a7a78"/><stop offset="20%" stop-color="#c0beb8"/><stop offset="42%" stop-color="#dcdad2"/><stop offset="58%" stop-color="#cac8c0"/><stop offset="80%" stop-color="#b0aea8"/><stop offset="100%" stop-color="#888680"/></linearGradient>
@@ -340,6 +342,8 @@
 
 <script>
   const KEY = 'bazaar_imgs';
+  // Default image sources (the actual photo files)
+  const DEFAULT_SRC = { 1: 'qixing.jpg', 2: 'huahao.jpg' };
 
   function triggerUpload(n) { document.getElementById('file-' + n).click(); }
 
@@ -347,8 +351,7 @@
     if (!input.files || !input.files[0]) return;
     const reader = new FileReader();
     reader.onload = e => {
-      applyImg(n, e.target.result);
-      // Persist to localStorage
+      setPhoto(n, e.target.result);
       try {
         const store = JSON.parse(localStorage.getItem(KEY) || '{}');
         store[n] = e.target.result;
@@ -359,25 +362,14 @@
     input.value = '';
   }
 
-  function applyImg(n, src) {
-    const inner = document.getElementById('inner-' + n);
-    const oldSvg = document.getElementById('svg-' + n);
-    if (oldSvg) oldSvg.style.display = 'none';
-    let photo = inner.querySelector('.user-photo');
-    if (!photo) {
-      photo = document.createElement('img');
-      photo.className = 'user-photo';
-      inner.insertBefore(photo, inner.firstChild);
-    }
-    photo.src = src;
+  function setPhoto(n, src) {
+    const photo = document.getElementById('photo-' + n);
+    if (photo) photo.src = src;
   }
 
   function resetImg(n) {
-    const inner = document.getElementById('inner-' + n);
-    const photo = inner.querySelector('.user-photo');
-    if (photo) photo.remove();
-    const svg = document.getElementById('svg-' + n);
-    if (svg) svg.style.display = '';
+    // Restore to the default photo file
+    setPhoto(n, DEFAULT_SRC[n]);
     try {
       const store = JSON.parse(localStorage.getItem(KEY) || '{}');
       delete store[n];
@@ -385,11 +377,11 @@
     } catch(ex) {}
   }
 
-  // Restore on page load
+  // Restore custom uploads on page load
   window.addEventListener('DOMContentLoaded', () => {
     try {
       const store = JSON.parse(localStorage.getItem(KEY) || '{}');
-      [1, 2].forEach(n => { if (store[n]) applyImg(n, store[n]); });
+      [1, 2].forEach(n => { if (store[n]) setPhoto(n, store[n]); });
     } catch(ex) {}
   });
 </script>
