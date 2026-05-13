@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>花好咖啡 — 義賣展示卡</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; background: #f0ede8; display: flex; justify-content: center; padding: 2rem 1rem; min-height: 100vh; }
+  .card { background: #fff; border-radius: 16px; overflow: hidden; max-width: 420px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
+  .visual { width: 100%; height: 300px; background: linear-gradient(160deg, #d8d4cc 0%, #e8e4dc 50%, #ccc8c0 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .body { padding: 1.5rem; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 12px; border-radius: 99px; background: #E1F5EE; color: #085041; letter-spacing: 0.05em; margin-bottom: 10px; }
+  .title { font-size: 24px; font-weight: 600; color: #1a1a1a; margin-bottom: 3px; }
+  .subtitle { font-size: 13px; color: #888; margin-bottom: 14px; }
+  .slogan { font-size: 15px; font-weight: 500; color: #1a1a1a; border-left: 3px solid #1D9E75; padding-left: 12px; margin-bottom: 14px; }
+  .desc { font-size: 14px; line-height: 1.85; color: #555; margin-bottom: 16px; }
+  .divider { border: none; border-top: 1px solid #f0ebe0; margin: 14px 0; }
+  .feat { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
+  .feat-icon { width: 32px; height: 32px; border-radius: 8px; background: #E1F5EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+  .feat-title { font-size: 13px; font-weight: 600; color: #222; }
+  .feat-sub { font-size: 12px; color: #888; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag { font-size: 12px; color: #777; padding: 4px 12px; border-radius: 99px; border: 1px solid #e0ece8; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="visual">
+    <svg width="230" height="280" viewBox="0 0 230 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="steel2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#7a7a78"/>
+          <stop offset="15%"  stop-color="#b8b6b0"/>
+          <stop offset="35%"  stop-color="#d8d6ce"/>
+          <stop offset="52%"  stop-color="#e4e2da"/>
+          <stop offset="68%"  stop-color="#c8c6be"/>
+          <stop offset="85%"  stop-color="#b0aea8"/>
+          <stop offset="100%" stop-color="#888680"/>
+        </linearGradient>
+        <linearGradient id="grip2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#1a1814"/>
+          <stop offset="30%"  stop-color="#2e2c28"/>
+          <stop offset="60%"  stop-color="#343230"/>
+          <stop offset="100%" stop-color="#1a1814"/>
+        </linearGradient>
+        <!-- arc path for badge text -->
+        <path id="arc-top2" d="M84 158 A28 28 0 0 1 146 158"/>
+        <path id="arc-bot2" d="M90 182 A22 22 0 0 0 140 182"/>
+      </defs>
+
+      <!-- floor shadow -->
+      <ellipse cx="115" cy="268" rx="54" ry="8" fill="#000" opacity="0.18"/>
+
+      <!-- === CUP BODY: tapered trapezoid === -->
+      <path d="M68 88 L162 88 L150 252 L80 252 Z" fill="url(#steel2)"/>
+
+      <!-- steel highlight streak -->
+      <path d="M86 90 L82 250" stroke="#fff" stroke-width="6" opacity="0.14" stroke-linecap="round"/>
+      <path d="M144 90 L148 250" stroke="#fff" stroke-width="2" opacity="0.08" stroke-linecap="round"/>
+
+      <!-- === LASER ENGRAVED BADGE === -->
+      <!-- outer wreath/ring -->
+      <circle cx="115" cy="158" r="32" fill="none" stroke="#5a5850" stroke-width="1.6" opacity="0.80"/>
+      <!-- wreath dots (simplified) -->
+      <circle cx="83"  cy="158" r="1.2" fill="#5a5850" opacity="0.60"/>
+      <circle cx="147" cy="158" r="1.2" fill="#5a5850" opacity="0.60"/>
+      <!-- wheat/laurel marks left -->
+      <path d="M84 150 Q80 154 84 158" stroke="#5a5850" stroke-width="1.0" fill="none" opacity="0.55"/>
+      <path d="M84 158 Q80 162 84 166" stroke="#5a5850" stroke-width="1.0" fill="none" opacity="0.55"/>
+      <!-- wheat/laurel marks right -->
+      <path d="M146 150 Q150 154 146 158" stroke="#5a5850" stroke-width="1.0" fill="none" opacity="0.55"/>
+      <path d="M146 158 Q150 162 146 166" stroke="#5a5850" stroke-width="1.0" fill="none" opacity="0.55"/>
+
+      <!-- inner ring -->
+      <circle cx="115" cy="158" r="26" fill="none" stroke="#5a5850" stroke-width="0.7" opacity="0.60"/>
+
+      <!-- LIGHTHOUSE (left inside badge) -->
+      <rect x="90" y="148" width="5" height="14" fill="#5a5850" opacity="0.65"/>
+      <polygon points="90,148 95,148 92.5,143" fill="#5a5850" opacity="0.65"/>
+      <rect x="91" y="150" width="3" height="2" fill="#ccc" opacity="0.3"/>
+
+      <!-- WAVES -->
+      <path d="M88 168 Q94 162 100 168 Q106 174 112 168 Q118 162 124 168 Q130 174 136 168 Q140 165 142 168" fill="none" stroke="#5a5850" stroke-width="1.3" opacity="0.70"/>
+      <path d="M90 173 Q96 168 102 173 Q108 178 114 173 Q120 168 126 173 Q132 178 138 173 Q141 171 143 173" fill="none" stroke="#5a5850" stroke-width="1.0" opacity="0.55"/>
+
+      <!-- WHALE -->
+      <path d="M100 162 Q108 155 118 160 Q126 164 128 170 Q122 175 114 172 Q106 170 100 162 Z" fill="#5a5850" opacity="0.62"/>
+      <!-- whale tail -->
+      <path d="M100 162 Q97 158 94 160 Q96 165 100 162" fill="#5a5850" opacity="0.58"/>
+      <!-- whale eye -->
+      <circle cx="121" cy="163" r="1.2" fill="#ccc" opacity="0.50"/>
+      <!-- whale fin -->
+      <path d="M112 158 Q115 152 118 158" fill="#5a5850" opacity="0.55"/>
+
+      <!-- school emblem hint (small circle at top center) -->
+      <circle cx="115" cy="140" r="5" fill="none" stroke="#5a5850" stroke-width="0.8" opacity="0.60"/>
+      <circle cx="115" cy="140" r="2.5" fill="#5a5850" opacity="0.40"/>
+
+      <!-- arc text top: 九十花中 仁心遠揚 -->
+      <text font-size="6" font-family="serif" fill="#5a5850" opacity="0.82" font-weight="600" letter-spacing="1.2">
+        <textPath href="#arc-top2" startOffset="8%">九十花中   仁心遠揚</textPath>
+      </text>
+      <!-- 90 at bottom -->
+      <text x="115" y="182" text-anchor="middle" font-size="7" font-family="Arial, sans-serif" fill="#5a5850" opacity="0.75" font-weight="700" letter-spacing="1">90</text>
+
+      <!-- === GRIP / SLEEVE (dark, ribbed) === -->
+      <path d="M76 190 L154 190 L150 250 L80 250 Z" fill="url(#grip2)" opacity="0.95"/>
+      <!-- ribs -->
+      <line x1="83"  y1="190" x2="81"  y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="87"  y1="190" x2="85"  y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="91"  y1="190" x2="89"  y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="95"  y1="190" x2="93"  y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="99"  y1="190" x2="97"  y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="103" y1="190" x2="101" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="107" y1="190" x2="105" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="111" y1="190" x2="109" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="115" y1="190" x2="113" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="119" y1="190" x2="117" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="123" y1="190" x2="121" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="127" y1="190" x2="125" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="131" y1="190" x2="129" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="135" y1="190" x2="133" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="139" y1="190" x2="137" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="143" y1="190" x2="141" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <line x1="147" y1="190" x2="145" y2="250" stroke="#0a0a08" stroke-width="1.1" opacity="0.55"/>
+      <!-- grip highlight -->
+      <path d="M94 190 L92 250" stroke="#505048" stroke-width="1.5" opacity="0.28"/>
+
+      <!-- bottom rim -->
+      <path d="M80 250 L150 250 L150 256 L80 256 Z" fill="#909088" opacity="0.80"/>
+
+      <!-- === LID (silicone, dark charcoal) === -->
+      <!-- lid main body -->
+      <path d="M66 88 Q66 74 115 70 Q164 74 164 88 Z" fill="#2a2a28" opacity="0.95"/>
+      <!-- dome top -->
+      <ellipse cx="115" cy="70" rx="49" ry="11" fill="#323230"/>
+      <!-- lid inner seat ring -->
+      <ellipse cx="115" cy="87" rx="46" ry="4.5" fill="#1a1a18" opacity="0.65"/>
+      <!-- lid highlight -->
+      <path d="M80 78 Q92 70 106 68" stroke="#4a4a48" stroke-width="2.5" fill="none" opacity="0.45" stroke-linecap="round"/>
+      <!-- drink spout hint -->
+      <ellipse cx="115" cy="70" rx="10" ry="3.5" fill="#1e1e1c" opacity="0.50"/>
+    </svg>
+  </div>
+
+  <div class="body">
+    <span class="badge">作品 02 · 九十週年限定</span>
+    <p class="title">花好咖啡</p>
+    <p class="subtitle">Floral Coffee Cup — 校慶紀念雷射雕刻隨行杯</p>
+    <div class="slogan">九十花中、仁心遠揚</div>
+    <p class="desc">
+      以學生第一名獲獎設計為藍本，鯨魚躍浪、燈塔守望、浪花翻騰，
+      構成這枚雋永的九十週年圓形徽章，透過精密雷射雕刻永久烙印於
+      不鏽鋼杯身。深色矽膠軟蓋密封保溫，黑色直紋矽膠護墊安心握持。
+      帶著它，每一口都是花中太平洋的氣度。
+    </p>
+
+    <hr class="divider">
+
+    <div class="feat">
+      <div class="feat-icon">🏆</div>
+      <div><div class="feat-title">第一名獲獎學生設計</div><div class="feat-sub">鯨魚×燈塔×浪花，九十週年圓形徽章雷射雕刻</div></div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">✨</div>
+      <div><div class="feat-title">食品級不鏽鋼杯體</div><div class="feat-sub">錐形隨行杯造型，耐用保溫，質感出眾</div></div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🖤</div>
+      <div><div class="feat-title">深色矽膠軟蓋</div><div class="feat-sub">密封防漏，隨行攜帶安心不外溢</div></div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🛡️</div>
+      <div><div class="feat-title">黑色直紋矽膠護墊</div><div class="feat-sub">隔熱防燙，穩固不滑手，日常攜帶無虞</div></div>
+    </div>
+
+    <div class="tags">
+      <span class="tag">日常隨行杯</span>
+      <span class="tag">限量義賣</span>
+      <span class="tag">學生獲獎設計</span>
+      <span class="tag">保溫保冷</span>
+      <span class="tag">九十週年紀念</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
