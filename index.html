@@ -75,6 +75,7 @@
   .img-zone {
     width:100%; height:200px; position:relative;
     margin-bottom:1.2rem; border-radius:8px; overflow:hidden;
+    display:block; text-decoration:none;
   }
   .img-zone-inner {
     width:100%; height:100%; display:flex;
@@ -83,7 +84,21 @@
   .product-photo {
     position:absolute; inset:0; width:100%; height:100%;
     object-fit:cover; object-position:center;
+    transition: transform 0.35s ease;
   }
+  .img-zone:hover .product-photo { transform: scale(1.04); }
+  .img-zone::after {
+    content: '查看詳情 →';
+    position:absolute; bottom:10px; right:12px;
+    background: rgba(26,24,20,0.62);
+    color: rgba(232,200,112,0.95);
+    font-size:11px; letter-spacing:0.1em;
+    padding:4px 10px; border-radius:99px;
+    opacity:0; transition: opacity 0.25s;
+    font-family:'Noto Serif TC',serif;
+    pointer-events:none;
+  }
+  .img-zone:hover::after { opacity:1; }
 
   .product-label { font-size:10px; font-weight:500; letter-spacing:0.2em; color:var(--gold-dk); text-transform:uppercase; margin-bottom:0.4rem; }
   .product-name { font-family:'Noto Serif TC',serif; font-size:20px; font-weight:600; color:var(--ink); letter-spacing:0.06em; margin-bottom:0.25rem; }
@@ -151,11 +166,11 @@
     <!-- 作品一 -->
     <div class="product">
       <div class="product-num">01</div>
-      <div class="img-zone">
+      <a class="img-zone" href="qixing.html">
         <div class="img-zone-inner">
           <img src="qixing.png" class="product-photo" alt="七星石光">
         </div>
-      </div>
+      </a>
       <p class="product-label">作品 01</p>
       <p class="product-name">七星石光</p>
       <p class="product-name-en">Star Stone Light</p>
@@ -171,11 +186,11 @@
     <!-- 作品二 -->
     <div class="product">
       <div class="product-num">02</div>
-      <div class="img-zone">
+      <a class="img-zone" href="huahao.html">
         <div class="img-zone-inner">
           <img src="huahao.png" class="product-photo" alt="花好咖啡">
         </div>
-      </div>
+      </a>
       <p class="product-label">作品 02</p>
       <p class="product-name">花好咖啡</p>
       <p class="product-name-en">Floral Coffee Cup</p>
