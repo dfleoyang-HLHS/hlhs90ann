@@ -13,26 +13,9 @@
   }
   body {
     font-family:'Noto Sans TC',sans-serif; background:#111008;
-    display:flex; flex-direction:column; align-items:center;
-    min-height:100vh; padding:2rem 1rem; gap:1rem;
+    display:flex; justify-content:center;
+    min-height:100vh; padding:2rem 1rem;
   }
-  .toolbar {
-    width:100%; max-width:680px; background:#1e1c14;
-    border:1px solid rgba(200,164,74,0.25); border-radius:10px;
-    padding:0.8rem 1.2rem; display:flex; align-items:center;
-    gap:0.8rem; flex-wrap:wrap;
-  }
-  .toolbar-label { font-size:11px; color:rgba(200,164,74,0.7); letter-spacing:0.12em; font-family:'Noto Serif TC',serif; white-space:nowrap; }
-  .tb-sep { width:1px; height:20px; background:rgba(200,164,74,0.2); flex-shrink:0; }
-  .tb-btn {
-    font-size:12px; color:rgba(200,164,74,0.85);
-    background:rgba(200,164,74,0.08); border:1px solid rgba(200,164,74,0.25);
-    border-radius:6px; padding:5px 12px; cursor:pointer;
-    letter-spacing:0.05em; transition:background 0.15s; white-space:nowrap;
-  }
-  .tb-btn:hover { background:rgba(200,164,74,0.18); }
-  .tb-hint { font-size:11px; color:rgba(245,240,228,0.28); letter-spacing:0.05em; margin-left:auto; }
-
   .poster {
     width:100%; max-width:680px; background:var(--paper); position:relative; overflow:hidden;
   }
@@ -91,31 +74,16 @@
   /* IMAGE ZONE */
   .img-zone {
     width:100%; height:200px; position:relative;
-    margin-bottom:1.2rem; cursor:pointer;
-    border-radius:8px; overflow:hidden;
+    margin-bottom:1.2rem; border-radius:8px; overflow:hidden;
   }
   .img-zone-inner {
     width:100%; height:100%; display:flex;
     align-items:center; justify-content:center; position:relative;
   }
-  .svg-placeholder {
-    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(135deg,#1a1810 0%,#2a2418 100%);
-  }
-  .user-photo {
+  .product-photo {
     position:absolute; inset:0; width:100%; height:100%;
-    object-fit:cover; object-position:center; z-index:2;
+    object-fit:cover; object-position:center;
   }
-  .img-overlay {
-    position:absolute; inset:0; z-index:5;
-    background:rgba(26,24,20,0.50);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:6px; opacity:0; transition:opacity 0.2s;
-    border:1.5px dashed rgba(200,164,74,0.6); border-radius:8px;
-  }
-  .img-zone:hover .img-overlay { opacity:1; }
-  .img-overlay-icon { font-size:22px; }
-  .img-overlay-text { font-size:11px; color:var(--gold-lt); letter-spacing:0.12em; font-family:'Noto Serif TC',serif; }
 
   .product-label { font-size:10px; font-weight:500; letter-spacing:0.2em; color:var(--gold-dk); text-transform:uppercase; margin-bottom:0.4rem; }
   .product-name { font-family:'Noto Serif TC',serif; font-size:20px; font-weight:600; color:var(--ink); letter-spacing:0.06em; margin-bottom:0.25rem; }
@@ -150,21 +118,6 @@
 </head>
 <body>
 
-<!-- TOOLBAR -->
-<div class="toolbar">
-  <span class="toolbar-label">✦ 編輯模式</span>
-  <div class="tb-sep"></div>
-  <button class="tb-btn" onclick="triggerUpload(1)">📷 更換作品一圖片</button>
-  <button class="tb-btn" onclick="triggerUpload(2)">📷 更換作品二圖片</button>
-  <div class="tb-sep"></div>
-  <button class="tb-btn" onclick="resetImg(1)">↺ 還原一</button>
-  <button class="tb-btn" onclick="resetImg(2)">↺ 還原二</button>
-  <span class="tb-hint">圖片存於瀏覽器，重整後自動還原</span>
-</div>
-
-<input type="file" id="file-1" accept="image/*" style="display:none" onchange="loadImg(1,this)">
-<input type="file" id="file-2" accept="image/*" style="display:none" onchange="loadImg(2,this)">
-
 <div class="poster">
   <div class="corner corner-tl"><svg viewBox="0 0 18 18" fill="none"><path d="M1 17V3Q1 1 3 1H17" stroke="#C8A44A" stroke-width="0.8" opacity="0.6"/><circle cx="1" cy="1" r="1.5" fill="#C8A44A" opacity="0.5"/></svg></div>
   <div class="corner corner-tr"><svg viewBox="0 0 18 18" fill="none"><path d="M1 17V3Q1 1 3 1H17" stroke="#C8A44A" stroke-width="0.8" opacity="0.6"/><circle cx="1" cy="1" r="1.5" fill="#C8A44A" opacity="0.5"/></svg></div>
@@ -198,51 +151,10 @@
     <!-- 作品一 -->
     <div class="product">
       <div class="product-num">01</div>
-      <div class="img-zone" id="zone-1" onclick="triggerUpload(1)">
-        <div class="img-zone-inner" id="inner-1">
-          <img src="qixing.jpg" class="user-photo" id="photo-1" alt="七星石光">
-          <div class="svg-placeholder" id="svg-1" style="display:none">
-            <svg width="130" height="170" viewBox="0 0 130 170" xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="p1g" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c8a040" stop-opacity="0.15"/><stop offset="40%" stop-color="#f5f0e0" stop-opacity="0.9"/><stop offset="100%" stop-color="#c8a040" stop-opacity="0.12"/></linearGradient></defs>
-              <ellipse cx="65" cy="158" rx="42" ry="7" fill="#C8A44A" opacity="0.18"/>
-              <rect x="22" y="120" width="86" height="5" rx="1" fill="#8A6820" opacity="0.6"/>
-              <rect x="22" y="28" width="43" height="95" fill="url(#p1g)"/>
-              <ellipse cx="36" cy="42" rx="9" ry="4.5" fill="#1A1814" opacity="0.55"/>
-              <ellipse cx="34" cy="51" rx="7" ry="3.5" fill="#1A1814" opacity="0.50"/>
-              <ellipse cx="37" cy="59" rx="8" ry="4" fill="#1A1814" opacity="0.52"/>
-              <ellipse cx="35" cy="67" rx="6" ry="3.2" fill="#1A1814" opacity="0.48"/>
-              <ellipse cx="36" cy="74" rx="7.5" ry="3.8" fill="#1A1814" opacity="0.52"/>
-              <path d="M54 38Q60 54 56 70Q52 86 60 105Q62 112 58 120" stroke="#1A1814" stroke-width="2" fill="none" opacity="0.38" stroke-linecap="round"/>
-              <ellipse cx="62" cy="90" rx="5" ry="2.8" fill="#1A1814" opacity="0.45"/>
-              <ellipse cx="61" cy="97" rx="4" ry="2.2" fill="#1A1814" opacity="0.40"/>
-              <ellipse cx="62" cy="103" rx="4.5" ry="2.5" fill="#1A1814" opacity="0.45"/>
-              <ellipse cx="61" cy="110" rx="5.5" ry="2.8" fill="#1A1814" opacity="0.40"/>
-              <rect x="65" y="28" width="43" height="95" fill="#ede8d5" opacity="0.80"/>
-              <ellipse cx="78" cy="40" rx="7" ry="3.5" fill="#1A1814" opacity="0.50"/>
-              <ellipse cx="80" cy="49" rx="5.5" ry="2.8" fill="#1A1814" opacity="0.46"/>
-              <ellipse cx="77" cy="57" rx="6.5" ry="3.2" fill="#1A1814" opacity="0.48"/>
-              <ellipse cx="79" cy="65" rx="5" ry="2.5" fill="#1A1814" opacity="0.44"/>
-              <ellipse cx="78" cy="72" rx="6" ry="3" fill="#1A1814" opacity="0.48"/>
-              <path d="M94 36Q100 52 96 68Q92 84 99 102Q102 112 96 120" stroke="#1A1814" stroke-width="2" fill="none" opacity="0.34" stroke-linecap="round"/>
-              <ellipse cx="107" cy="58" rx="6" ry="3" fill="#1A1814" opacity="0.44"/>
-              <ellipse cx="109" cy="66" rx="4.5" ry="2.3" fill="#1A1814" opacity="0.40"/>
-              <ellipse cx="107" cy="73" rx="5.5" ry="2.8" fill="#1A1814" opacity="0.44"/>
-              <ellipse cx="108" cy="81" rx="7" ry="3.5" fill="#1A1814" opacity="0.40"/>
-              <line x1="65" y1="28" x2="65" y2="123" stroke="#9A8030" stroke-width="0.8" opacity="0.45"/>
-              <rect x="18" y="22" width="94" height="9" rx="2" fill="#C8A44A" opacity="0.70"/>
-              <rect x="26" y="17" width="8" height="7" rx="1.5" fill="#B09030" opacity="0.68"/>
-              <rect x="46" y="17" width="8" height="7" rx="1.5" fill="#B09030" opacity="0.68"/>
-              <rect x="66" y="17" width="8" height="7" rx="1.5" fill="#B09030" opacity="0.68"/>
-              <rect x="86" y="17" width="8" height="7" rx="1.5" fill="#B09030" opacity="0.68"/>
-              <rect x="18" y="22" width="4" height="100" rx="1" fill="#A07828" opacity="0.55"/>
-              <rect x="108" y="22" width="4" height="100" rx="1" fill="#A07828" opacity="0.40"/>
-              <rect x="22" y="28" width="86" height="95" fill="#FFF8EC" opacity="0.10"/>
-              <circle cx="65" cy="12" r="7" fill="none" stroke="#C8A44A" stroke-width="0.8" opacity="0.65"/>
-              <circle cx="65" cy="12" r="3.5" fill="#C8A44A" opacity="0.35"/>
-            </svg>
-          </div>
+      <div class="img-zone">
+        <div class="img-zone-inner">
+          <img src="qixing.jpg" class="product-photo" alt="七星石光">
         </div>
-        <div class="img-overlay"><div class="img-overlay-icon">📷</div><div class="img-overlay-text">點擊更換圖片</div></div>
       </div>
       <p class="product-label">作品 01</p>
       <p class="product-name">七星石光</p>
@@ -259,55 +171,10 @@
     <!-- 作品二 -->
     <div class="product">
       <div class="product-num">02</div>
-      <div class="img-zone" id="zone-2" onclick="triggerUpload(2)">
-        <div class="img-zone-inner" id="inner-2">
-          <img src="huahao.jpg" class="user-photo" id="photo-2" alt="花好咖啡">
-          <div class="svg-placeholder" id="svg-2" style="display:none">
-            <svg width="120" height="170" viewBox="0 0 120 170" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="p2s" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7a7a78"/><stop offset="20%" stop-color="#c0beb8"/><stop offset="42%" stop-color="#dcdad2"/><stop offset="58%" stop-color="#cac8c0"/><stop offset="80%" stop-color="#b0aea8"/><stop offset="100%" stop-color="#888680"/></linearGradient>
-                <linearGradient id="p2r" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c07828"/><stop offset="35%" stop-color="#e89838"/><stop offset="65%" stop-color="#d08830"/><stop offset="100%" stop-color="#a06020"/></linearGradient>
-                <path id="arc2" d="M42 92A24 24 0 0 1 78 92"/>
-              </defs>
-              <ellipse cx="60" cy="158" rx="32" ry="6" fill="#000" opacity="0.12"/>
-              <path d="M28 56L92 56L82 148L38 148Z" fill="url(#p2s)"/>
-              <path d="M38 58L35 146" stroke="#fff" stroke-width="4" opacity="0.12" stroke-linecap="round"/>
-              <circle cx="60" cy="96" r="22" fill="none" stroke="#4a4840" stroke-width="1.2" opacity="0.75"/>
-              <circle cx="60" cy="96" r="16" fill="none" stroke="#4a4840" stroke-width="0.6" opacity="0.55"/>
-              <rect x="40" y="89" width="4" height="10" fill="#4a4840" opacity="0.60"/>
-              <polygon points="40,89 44,89 42,85" fill="#4a4840" opacity="0.60"/>
-              <path d="M38 104Q43 99 48 104Q53 109 58 104Q63 99 68 104Q73 109 78 104Q81 102 82 104" fill="none" stroke="#4a4840" stroke-width="1.1" opacity="0.65"/>
-              <path d="M39 109Q44 105 49 109Q54 113 59 109Q64 105 69 109Q74 113 79 109" fill="none" stroke="#4a4840" stroke-width="0.8" opacity="0.50"/>
-              <path d="M48 100Q55 93 64 97Q71 100 72 106Q67 110 60 108Q53 106 48 100Z" fill="#4a4840" opacity="0.58"/>
-              <path d="M48 100Q45 96 42 98Q44 102 48 100" fill="#4a4840" opacity="0.55"/>
-              <circle cx="66" cy="99" r="1" fill="#ddd" opacity="0.40"/>
-              <circle cx="60" cy="80" r="4" fill="none" stroke="#4a4840" stroke-width="0.7" opacity="0.55"/>
-              <circle cx="60" cy="80" r="2" fill="#4a4840" opacity="0.35"/>
-              <text font-size="5.5" font-family="serif" fill="#4a4840" opacity="0.78" font-weight="600" letter-spacing="1.0"><textPath href="#arc2" startOffset="5%">九十花中   仁心遠揚</textPath></text>
-              <text x="60" y="116" text-anchor="middle" font-size="6" font-family="Arial" fill="#4a4840" opacity="0.70" font-weight="700" letter-spacing="1">90</text>
-              <path d="M34 114L86 114L82 146L38 146Z" fill="url(#p2r)" opacity="0.90"/>
-              <line x1="39" y1="114" x2="38" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="43" y1="114" x2="42" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="47" y1="114" x2="46" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="51" y1="114" x2="50" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="55" y1="114" x2="54" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="59" y1="114" x2="58" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="63" y1="114" x2="62" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="67" y1="114" x2="66" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="71" y1="114" x2="70" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="75" y1="114" x2="74" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="79" y1="114" x2="78" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <line x1="83" y1="114" x2="82" y2="146" stroke="#804010" stroke-width="0.9" opacity="0.40"/>
-              <path d="M38 146L82 146L82 150L38 150Z" fill="#909088" opacity="0.75"/>
-              <path d="M26 56Q26 44 60 40Q94 44 94 56Z" fill="#B07828" opacity="0.92"/>
-              <ellipse cx="60" cy="40" rx="34" ry="9" fill="#C88830"/>
-              <ellipse cx="60" cy="55" rx="32" ry="3.5" fill="#8A5A18" opacity="0.55"/>
-              <path d="M34 47Q42 41 54 39" stroke="#D89838" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
-              <ellipse cx="60" cy="40" rx="7" ry="2.5" fill="#7A4810" opacity="0.40"/>
-            </svg>
-          </div>
+      <div class="img-zone">
+        <div class="img-zone-inner">
+          <img src="huahao.jpg" class="product-photo" alt="花好咖啡">
         </div>
-        <div class="img-overlay"><div class="img-overlay-icon">📷</div><div class="img-overlay-text">點擊更換圖片</div></div>
       </div>
       <p class="product-label">作品 02</p>
       <p class="product-name">花好咖啡</p>
@@ -340,50 +207,5 @@
   </div>
 </div>
 
-<script>
-  const KEY = 'bazaar_imgs';
-  // Default image sources (the actual photo files)
-  const DEFAULT_SRC = { 1: 'qixing.jpg', 2: 'huahao.jpg' };
-
-  function triggerUpload(n) { document.getElementById('file-' + n).click(); }
-
-  function loadImg(n, input) {
-    if (!input.files || !input.files[0]) return;
-    const reader = new FileReader();
-    reader.onload = e => {
-      setPhoto(n, e.target.result);
-      try {
-        const store = JSON.parse(localStorage.getItem(KEY) || '{}');
-        store[n] = e.target.result;
-        localStorage.setItem(KEY, JSON.stringify(store));
-      } catch(ex) {}
-    };
-    reader.readAsDataURL(input.files[0]);
-    input.value = '';
-  }
-
-  function setPhoto(n, src) {
-    const photo = document.getElementById('photo-' + n);
-    if (photo) photo.src = src;
-  }
-
-  function resetImg(n) {
-    // Restore to the default photo file
-    setPhoto(n, DEFAULT_SRC[n]);
-    try {
-      const store = JSON.parse(localStorage.getItem(KEY) || '{}');
-      delete store[n];
-      localStorage.setItem(KEY, JSON.stringify(store));
-    } catch(ex) {}
-  }
-
-  // Restore custom uploads on page load
-  window.addEventListener('DOMContentLoaded', () => {
-    try {
-      const store = JSON.parse(localStorage.getItem(KEY) || '{}');
-      [1, 2].forEach(n => { if (store[n]) setPhoto(n, store[n]); });
-    } catch(ex) {}
-  });
-</script>
 </body>
 </html>
