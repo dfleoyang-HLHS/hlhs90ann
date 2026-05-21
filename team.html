@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>師生協作團隊 — 花中九十校慶義賣</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+  :root {
+    --gold:#C8A44A; --gold-lt:#E8C870; --gold-dk:#8A6820;
+    --ink:#1A1814; --ink-mid:#3A3530;
+    --body-bg:#111008;
+    --card-bg:#1e1c14;
+    --page-bg:#F5F0E4;
+    --text-primary:#1a1a1a;
+    --text-secondary:#5a5040;
+    --text-muted:#9a8868;
+    --divider:rgba(200,164,74,0.25);
+    --member-bg:#f9f5eb;
+    --member-border:rgba(200,164,74,0.3);
+    --photo-shadow:rgba(0,0,0,0.14);
+  }
+  body.light {
+    --body-bg:#e8e4da;
+    --card-bg:#ffffff;
+    --page-bg:#ffffff;
+    --text-primary:#1a1208;
+    --text-secondary:#4a3a28;
+    --text-muted:#7a6848;
+    --divider:rgba(160,120,40,0.25);
+    --member-bg:#fff8ee;
+    --member-border:rgba(180,140,50,0.3);
+    --photo-shadow:rgba(0,0,0,0.10);
+  }
+
+  body {
+    font-family:'Noto Sans TC',sans-serif;
+    background:var(--body-bg);
+    display:flex; flex-direction:column; align-items:center;
+    min-height:100vh; padding:1rem 1rem 3rem;
+    transition:background 0.3s;
+  }
+
+  /* ctrl bar */
+  .ctrl-bar {
+    width:100%; max-width:680px;
+    display:flex; justify-content:flex-end; gap:6px; margin-bottom:0.6rem;
+  }
+  .ctrl-btn {
+    font-size:11px; padding:4px 12px; border-radius:99px; cursor:pointer;
+    border:1px solid rgba(200,164,74,0.4);
+    background:rgba(200,164,74,0.08); color:rgba(200,164,74,0.85);
+    transition:background 0.15s; letter-spacing:0.06em;
+  }
+  .ctrl-btn:hover, .ctrl-btn.active {
+    background:rgba(200,164,74,0.22); color:#E8C870;
+  }
+  body.light .ctrl-btn { border-color:rgba(140,100,20,0.4); background:rgba(140,100,20,0.08); color:#7a5a18; }
+  body.light .ctrl-btn:hover, body.light .ctrl-btn.active { background:rgba(140,100,20,0.20); color:#5a3a08; }
+
+  /* back btn */
+  .back-btn { width:100%; max-width:680px; margin-bottom:0.5rem; }
+  .back-btn a {
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:12px; color:rgba(200,164,74,0.75); text-decoration:none;
+    padding:4px 2px; letter-spacing:0.05em; transition:color 0.15s;
+  }
+  .back-btn a:hover { color:var(--gold-lt); }
+  .back-btn a::before { content:'←'; font-size:13px; }
+
+  /* main wrap */
+  .wrap { width:100%; max-width:680px; }
+
+  /* ── HERO HEADER ── */
+  .hero {
+    background:var(--ink);
+    border-radius:16px 16px 0 0;
+    padding:2.2rem 2.5rem 1.8rem;
+    position:relative; overflow:hidden;
+  }
+  .hero-bg {
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse at 20% 60%,rgba(200,164,74,0.12) 0%,transparent 55%),
+               radial-gradient(ellipse at 85% 20%,rgba(200,164,74,0.08) 0%,transparent 50%);
+  }
+  .gold-line { width:60px; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); margin:0.8rem auto; position:relative; z-index:2; }
+  .hero-label { font-family:'Noto Serif TC',serif; font-size:10px; color:rgba(200,164,74,0.7); letter-spacing:0.3em; text-align:center; position:relative; z-index:2; margin-bottom:0.4rem; }
+  .hero-title { font-family:'Noto Serif TC',serif; font-size:26px; font-weight:700; color:var(--gold-lt); text-align:center; letter-spacing:0.12em; position:relative; z-index:2; line-height:1.3; }
+  .hero-sub { font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:rgba(232,200,112,0.6); text-align:center; letter-spacing:0.1em; margin-top:0.3rem; position:relative; z-index:2; }
+  .hero-desc { font-size:12px; color:rgba(245,240,228,0.5); text-align:center; letter-spacing:0.1em; margin-top:0.6rem; position:relative; z-index:2; line-height:1.8; }
+
+  /* ── MEMBER SECTION ── */
+  .section {
+    background:var(--page-bg);
+    padding:1.8rem 2rem;
+    transition:background 0.3s;
+  }
+  .section + .section { border-top:1px solid var(--divider); }
+  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:1.2rem; }
+  .section-icon { font-size:18px; }
+  .section-title {
+    font-family:'Noto Serif TC',serif; font-size:14px; font-weight:700;
+    color:var(--gold-dk); letter-spacing:0.15em;
+  }
+  .section-count { font-size:11px; color:var(--text-muted); margin-left:auto; letter-spacing:0.08em; }
+
+  .member-grid { display:flex; flex-wrap:wrap; gap:8px; }
+  .member-chip {
+    display:flex; align-items:center; gap:7px;
+    background:var(--member-bg); border:1px solid var(--member-border);
+    border-radius:99px; padding:7px 14px;
+    transition:background 0.3s, border 0.3s;
+  }
+  .member-avatar {
+    width:28px; height:28px; border-radius:50%;
+    background:linear-gradient(135deg,var(--gold-dk),var(--gold));
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:700; color:#fff; flex-shrink:0;
+    font-family:'Noto Serif TC',serif;
+  }
+  .member-avatar.student {
+    background:linear-gradient(135deg,#3a3020,#6a5030);
+  }
+  .member-name { font-size:13px; font-weight:500; color:var(--text-primary); letter-spacing:0.04em; transition:color 0.3s; }
+  .member-name-en { font-size:10px; color:var(--text-muted); letter-spacing:0.04em; }
+
+  /* ── PHOTO GALLERY ── */
+  .gallery-section {
+    background:var(--page-bg);
+    padding:1.8rem 2rem;
+    border-top:1px solid var(--divider);
+    transition:background 0.3s;
+  }
+  .gallery-title-row { display:flex; align-items:center; gap:10px; margin-bottom:1.2rem; }
+  .gallery-label {
+    font-family:'Noto Serif TC',serif; font-size:14px; font-weight:700;
+    color:var(--gold-dk); letter-spacing:0.15em;
+  }
+
+  .photo-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .photo-item { position:relative; border-radius:10px; overflow:hidden; cursor:pointer; }
+  .photo-item.wide { grid-column:span 2; }
+  .photo-item img {
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 0.35s ease;
+    box-shadow:0 4px 16px var(--photo-shadow);
+  }
+  .photo-item:hover img { transform:scale(1.03); }
+  .photo-item { height:200px; }
+  .photo-item.wide { height:240px; }
+
+  /* lightbox */
+  .lightbox {
+    position:fixed; inset:0; background:rgba(0,0,0,0.88);
+    display:flex; align-items:center; justify-content:center;
+    z-index:100; opacity:0; pointer-events:none; transition:opacity 0.2s;
+  }
+  .lightbox.open { opacity:1; pointer-events:all; }
+  .lightbox img { max-width:92vw; max-height:88vh; border-radius:8px; object-fit:contain; }
+  .lightbox-close {
+    position:absolute; top:16px; right:20px;
+    font-size:28px; color:rgba(255,255,255,0.7); cursor:pointer;
+    background:none; border:none; line-height:1;
+  }
+
+  /* ── FOOTER ── */
+  .team-footer {
+    background:var(--ink); border-radius:0 0 16px 16px;
+    padding:1.2rem 2rem; text-align:center;
+  }
+  .team-footer p { font-size:11px; color:rgba(200,164,74,0.5); letter-spacing:0.12em; font-family:'Noto Serif TC',serif; line-height:2; }
+</style>
+</head>
+<body>
+
+<div class="ctrl-bar">
+  <button class="ctrl-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
+  <button class="ctrl-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="ctrl-btn" id="btn-dark" onclick="setMode('dark')">🌙 深色</button>
+  <button class="ctrl-btn" id="btn-light" onclick="setMode('light')">☀️ 淺色</button>
+</div>
+
+<div class="back-btn">
+  <a href="index.html" data-zh="回首頁" data-en="Back to Home"></a>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <p class="hero-label" data-zh="國立花蓮高級中學 · 九十週年校慶義賣" data-en="Hualien Senior High School · 90th Anniversary Charity Bazaar"></p>
+    <div class="gold-line"></div>
+    <h1 class="hero-title" data-zh="師生協作團隊" data-en="Student-Teacher Team"></h1>
+    <p class="hero-sub" data-zh="Collaboration · Creativity · Care" data-en="Collaboration · Creativity · Care"></p>
+    <p class="hero-desc"
+      data-zh="每一件義賣作品，都是師生攜手共同完成的心血結晶。<br>感謝每一位參與的老師與同學，用雙手為花中的未來盡一份力。"
+      data-en="Every item in this charity bazaar is a labor of love, created together by teachers and students.<br>Thank you to everyone who contributed their time and effort for the future of HLHS.">
+    </p>
+    <div class="gold-line"></div>
+  </div>
+
+  <!-- TEACHERS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">👨‍🏫</span>
+      <span class="section-title" data-zh="指導教師" data-en="Faculty Advisors"></span>
+      <span class="section-count" data-zh="5 位" data-en="5 teachers"></span>
+    </div>
+    <div class="member-grid">
+      <div class="member-chip">
+        <div class="member-avatar">楊</div>
+        <div>
+          <div class="member-name" data-zh="楊鵬耀" data-en="Yang Peng-Yao"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar">麥</div>
+        <div>
+          <div class="member-name" data-zh="麥芃芃" data-en="Mai Peng-Peng"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar">黃</div>
+        <div>
+          <div class="member-name" data-zh="黃楨喻" data-en="Huang Zhen-Yu"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar">江</div>
+        <div>
+          <div class="member-name" data-zh="江嘉玲" data-en="Jiang Jia-Ling"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar">彭</div>
+        <div>
+          <div class="member-name" data-zh="彭偉哲" data-en="Peng Wei-Zhe"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STUDENTS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🎓</span>
+      <span class="section-title" data-zh="參與學生" data-en="Student Members"></span>
+      <span class="section-count" data-zh="8 位" data-en="8 students"></span>
+    </div>
+    <div class="member-grid">
+      <div class="member-chip">
+        <div class="member-avatar student">劉</div>
+        <div>
+          <div class="member-name" data-zh="劉靖廷" data-en="Liu Jing-Ting"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar student">魏</div>
+        <div>
+          <div class="member-name" data-zh="魏劭丞" data-en="Wei Shao-Cheng"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar student">鍾</div>
+        <div>
+          <div class="member-name" data-zh="鍾承翰" data-en="Zhong Cheng-Han"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar student">潘</div>
+        <div>
+          <div class="member-name" data-zh="潘宥維" data-en="Pan You-Wei"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar student">杜</div>
+        <div>
+          <div class="member-name" data-zh="杜宇華" data-en="Du Yu-Hua"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar student">詹</div>
+        <div>
+          <div class="member-name" data-zh="詹昱峰" data-en="Zhan Yu-Feng"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar student">陳</div>
+        <div>
+          <div class="member-name" data-zh="陳宥熹" data-en="Chen You-Xi"></div>
+        </div>
+      </div>
+      <div class="member-chip">
+        <div class="member-avatar student">陳</div>
+        <div>
+          <div class="member-name" data-zh="陳泳銓" data-en="Chen Yong-Quan"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO GALLERY -->
+  <div class="gallery-section">
+    <div class="gallery-title-row">
+      <span class="section-icon">📸</span>
+      <span class="gallery-label" data-zh="製作花絮" data-en="Behind the Scenes"></span>
+    </div>
+    <div class="photo-grid">
+      <div class="photo-item wide" onclick="openLightbox('team2.jpg')">
+        <img src="team2.jpg" alt="師生合影" loading="lazy">
+      </div>
+      <div class="photo-item" onclick="openLightbox('team1.jpg')">
+        <img src="team1.jpg" alt="製作花絮 1" loading="lazy">
+      </div>
+      <div class="photo-item" onclick="openLightbox('team3.jpg')">
+        <img src="team3.jpg" alt="製作花絮 2" loading="lazy">
+      </div>
+      <div class="photo-item" onclick="openLightbox('team4.jpg')">
+        <img src="team4.jpg" alt="製作花絮 3" loading="lazy">
+      </div>
+      <div class="photo-item" onclick="openLightbox('team5.jpg')">
+        <img src="team5.jpg" alt="製作花絮 4" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="team-footer">
+    <p data-zh="國立花蓮高級中學 · 九十週年校慶<br>資媒組課程成果 · 師生共同製作" data-en="Hualien Senior High School · 90th Anniversary<br>Media Program Curriculum Achievement · Made Together"></p>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.querySelectorAll('[data-zh]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val !== null) el.innerHTML = val;
+    });
+    document.title = lang === 'zh'
+      ? '師生協作團隊 — 花中九十校慶義賣'
+      : 'Student-Teacher Team — HLHS 90th Anniversary';
+  }
+
+  function setMode(mode) {
+    document.body.classList.toggle('light', mode === 'light');
+    document.getElementById('btn-dark').classList.toggle('active', mode === 'dark');
+    document.getElementById('btn-light').classList.toggle('active', mode === 'light');
+  }
+
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  setLang('zh');
+  setMode('dark');
+</script>
+</body>
+</html>

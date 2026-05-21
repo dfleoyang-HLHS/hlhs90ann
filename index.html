@@ -124,6 +124,8 @@
     display:flex; align-items:center; justify-content:center; gap:1.2rem; flex-wrap:wrap;
   }
   .intro-band span { font-size:11px; color:rgba(200,164,74,0.8); letter-spacing:0.15em; font-family:'Noto Serif TC',serif; }
+  .intro-band span[onclick] { text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(200,164,74,0.45); }
+  .intro-band span[onclick]:hover { color:var(--gold-lt); }
   .dot { width:3px; height:3px; border-radius:50%; background:var(--gold); opacity:0.5; flex-shrink:0; }
 
   /* ── PRODUCTS ── */
@@ -264,7 +266,7 @@
 
   <!-- INTRO BAND -->
   <div class="intro-band">
-    <span data-zh="師生協作" data-en="Student-Teacher Collaboration"></span><div class="dot"></div>
+    <span data-zh="師生協作" data-en="Student-Teacher Collaboration" style="cursor:pointer;" onclick="window.location.href='team.html'"></span><div class="dot"></div>
     <span data-zh="雷射精工" data-en="Laser Craftsmanship"></span><div class="dot"></div>
     <span data-zh="限量義賣" data-en="Limited Edition"></span><div class="dot"></div>
     <span data-zh="全數挹注數位建設" data-en="All Proceeds to Digital Infrastructure"></span>
