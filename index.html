@@ -6,18 +6,76 @@
 <title>九十花中 仁心遠揚 — 校慶義賣</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+  /* ── CSS Variables: dark mode (default) ── */
   :root {
     --gold:#C8A44A; --gold-lt:#E8C870; --gold-dk:#8A6820;
-    --ink:#1A1814; --ink-mid:#3A3530; --paper:#F5F0E4; --paper-dk:#E8E0CC;
+    --ink:#1A1814; --ink-mid:#3A3530;
+    --paper:#F5F0E4; --paper-dk:#E8E0CC;
+    --body-bg:#111008;
+    --product-bg:#F5F0E4;
+    --product-text:#5a5040;
+    --spec-text:#6a5a40;
+    --price-text:#1A1814;
+    --qty-text:#9a8060;
+    --chip-bg:#f5eedd; --chip-border:rgba(200,164,74,0.35); --chip-text:#6a5040;
+    --purpose-bg:linear-gradient(to bottom,#F5F0E4,#E8E0CC);
+    --purpose-text:#6a5a40;
+    --purpose-title:#1A1814;
   }
+  /* ── light mode overrides ── */
+  body.light {
+    --body-bg:#e8e4dc;
+    --product-bg:#ffffff;
+    --product-text:#4a4030;
+    --spec-text:#5a4a30;
+    --price-text:#2a2018;
+    --qty-text:#7a6040;
+    --chip-bg:#fdf8ee; --chip-border:rgba(180,140,60,0.4); --chip-text:#5a4030;
+    --purpose-bg:linear-gradient(to bottom,#ffffff,#f5f0e4);
+    --purpose-text:#5a4a38;
+    --purpose-title:#2a2018;
+  }
+
   body {
-    font-family:'Noto Sans TC',sans-serif; background:#111008;
-    display:flex; justify-content:center;
-    min-height:100vh; padding:2rem 1rem;
+    font-family:'Noto Sans TC',sans-serif;
+    background:var(--body-bg);
+    display:flex; flex-direction:column; align-items:center;
+    min-height:100vh; padding:1rem 1rem 2rem;
+    transition:background 0.3s;
   }
+
+  /* ── CONTROL BAR ── */
+  .ctrl-bar {
+    width:100%; max-width:680px;
+    display:flex; justify-content:flex-end; gap:6px;
+    margin-bottom:0.6rem;
+  }
+  .ctrl-btn {
+    font-size:12px; font-family:'Noto Sans TC',sans-serif;
+    padding:5px 14px; border-radius:99px; cursor:pointer;
+    border:1px solid rgba(200,164,74,0.45);
+    background:rgba(200,164,74,0.10); color:rgba(200,164,74,0.9);
+    transition:background 0.15s, color 0.15s;
+    letter-spacing:0.08em;
+  }
+  .ctrl-btn:hover, .ctrl-btn.active {
+    background:rgba(200,164,74,0.22); color:#E8C870;
+  }
+  body.light .ctrl-btn {
+    border-color:rgba(140,100,20,0.4);
+    background:rgba(140,100,20,0.08); color:#7a5a18;
+  }
+  body.light .ctrl-btn:hover, body.light .ctrl-btn.active {
+    background:rgba(140,100,20,0.18); color:#5a3a08;
+  }
+
+  /* ── POSTER ── */
   .poster {
-    width:100%; max-width:680px; background:var(--paper); position:relative; overflow:hidden;
+    width:100%; max-width:680px;
+    background:var(--product-bg); position:relative; overflow:hidden;
+    transition:background 0.3s;
   }
   .poster::before {
     content:''; position:absolute; inset:12px;
@@ -27,6 +85,8 @@
     content:''; position:absolute; inset:16px;
     border:0.5px solid var(--gold); pointer-events:none; z-index:10; opacity:0.3;
   }
+
+  /* ── HEADER ── */
   .header { background:var(--ink); padding:2.5rem 3rem 2rem; position:relative; overflow:hidden; }
   .header-bg {
     position:absolute; inset:0;
@@ -41,7 +101,7 @@
     opacity:0.85; margin-bottom:0.6rem; position:relative; z-index:2;
   }
   .main-title {
-    font-family:'Noto Serif TC',serif; font-size:38px; font-weight:600;
+    font-family:'Noto Serif TC',serif; font-size:34px; font-weight:600;
     color:var(--gold-lt); text-align:center; letter-spacing:0.18em;
     line-height:1.2; position:relative; z-index:2;
     text-shadow:0 0 40px rgba(200,164,74,0.3);
@@ -57,199 +117,128 @@
     margin:1rem auto; position:relative; z-index:2;
   }
   .header-desc { font-size:12px; color:rgba(245,240,228,0.55); text-align:center; letter-spacing:0.12em; position:relative; z-index:2; }
+
+  /* ── INTRO BAND ── */
   .intro-band {
-    background:var(--ink-mid); padding:0.8rem 3rem;
-    display:flex; align-items:center; justify-content:center; gap:1.5rem;
+    background:var(--ink-mid); padding:0.8rem 2rem;
+    display:flex; align-items:center; justify-content:center; gap:1.2rem; flex-wrap:wrap;
   }
   .intro-band span { font-size:11px; color:rgba(200,164,74,0.8); letter-spacing:0.15em; font-family:'Noto Serif TC',serif; }
-  .dot { width:3px; height:3px; border-radius:50%; background:var(--gold); opacity:0.5; }
-  .products { display:grid; grid-template-columns:1fr 1fr; gap:0; }
-  .product { padding:2rem 1.8rem; position:relative; }
+  .dot { width:3px; height:3px; border-radius:50%; background:var(--gold); opacity:0.5; flex-shrink:0; }
+
+  /* ── PRODUCTS ── */
+  .products { display:grid; grid-template-columns:1fr 1fr; }
+  .product { padding:1.6rem 1.4rem; position:relative; background:var(--product-bg); transition:background 0.3s; }
   .product:first-child { border-right:1px solid rgba(200,164,74,0.2); }
   .product-num {
-    font-family:'Cormorant Garamond',serif; font-size:56px; font-weight:300;
-    color:rgba(200,164,74,0.12); position:absolute; top:1rem; right:1.2rem; line-height:1; pointer-events:none;
+    font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300;
+    color:rgba(200,164,74,0.12); position:absolute; top:0.8rem; right:1rem; line-height:1; pointer-events:none;
   }
 
-  /* IMAGE ZONE */
+  /* image zone */
   .img-zone {
-    width:100%; height:200px; position:relative;
-    margin-bottom:1.2rem; border-radius:8px; overflow:hidden;
+    width:100%; height:190px; position:relative;
+    margin-bottom:1rem; border-radius:8px; overflow:hidden;
     display:block; text-decoration:none;
   }
-  .img-zone-inner {
-    width:100%; height:100%; display:flex;
-    align-items:center; justify-content:center; position:relative;
-  }
+  .img-zone-inner { width:100%; height:100%; }
   .product-photo {
-    position:absolute; inset:0; width:100%; height:100%;
-    object-fit:cover; object-position:center;
-    transition: transform 0.35s ease;
+    width:100%; height:100%; object-fit:cover; object-position:center;
+    transition:transform 0.35s ease; display:block;
   }
-  .img-zone:hover .product-photo { transform: scale(1.04); }
+  .img-zone:hover .product-photo { transform:scale(1.04); }
   .img-zone::after {
-    content: '查看詳情 →';
-    position:absolute; bottom:10px; right:12px;
-    background: rgba(26,24,20,0.62);
-    color: rgba(232,200,112,0.95);
-    font-size:11px; letter-spacing:0.1em;
-    padding:4px 10px; border-radius:99px;
-    opacity:0; transition: opacity 0.25s;
-    font-family:'Noto Serif TC',serif;
-    pointer-events:none;
+    content:attr(data-hint);
+    position:absolute; bottom:8px; right:10px;
+    background:rgba(26,24,20,0.62); color:rgba(232,200,112,0.95);
+    font-size:10px; letter-spacing:0.08em;
+    padding:3px 9px; border-radius:99px;
+    opacity:0; transition:opacity 0.25s;
+    font-family:'Noto Serif TC',serif; pointer-events:none;
   }
   .img-zone:hover::after { opacity:1; }
 
-  .product-label { font-size:10px; font-weight:500; letter-spacing:0.2em; color:var(--gold-dk); text-transform:uppercase; margin-bottom:0.4rem; }
-  .product-name { font-family:'Noto Serif TC',serif; font-size:20px; font-weight:600; color:var(--ink); letter-spacing:0.06em; margin-bottom:0.25rem; }
-  .product-name-en { font-family:'Cormorant Garamond',serif; font-size:12px; font-style:italic; color:var(--gold-dk); letter-spacing:0.08em; margin-bottom:0.8rem; }
-  .product-desc { font-size:12px; line-height:1.9; color:#5a5040; margin-bottom:1rem; }
-  .spec-list { list-style:none; border-top:0.5px solid rgba(200,164,74,0.3); padding-top:0.8rem; }
-  .spec-list li { font-size:11px; color:#6a5a40; padding:0.25rem 0; padding-left:1rem; position:relative; letter-spacing:0.03em; }
-  .spec-list li::before { content:'—'; position:absolute; left:0; color:var(--gold); font-size:10px; }
+  .product-label { font-size:9px; font-weight:500; letter-spacing:0.2em; color:var(--gold-dk); text-transform:uppercase; margin-bottom:0.3rem; }
+  .product-name { font-family:'Noto Serif TC',serif; font-size:18px; font-weight:600; color:var(--price-text); letter-spacing:0.06em; margin-bottom:0.2rem; transition:color 0.3s; }
+  .product-name-en { font-family:'Cormorant Garamond',serif; font-size:11px; font-style:italic; color:var(--gold-dk); letter-spacing:0.06em; margin-bottom:0.7rem; }
+  .product-desc { font-size:11.5px; line-height:1.85; color:var(--product-text); margin-bottom:0.8rem; transition:color 0.3s; }
+  .spec-list { list-style:none; border-top:0.5px solid rgba(200,164,74,0.3); padding-top:0.7rem; margin-bottom:0; }
+  .spec-list li { font-size:10.5px; color:var(--spec-text); padding:0.2rem 0; padding-left:0.9rem; position:relative; }
+  .spec-list li::before { content:'—'; position:absolute; left:0; color:var(--gold); font-size:9px; }
 
-  /* 定價列 */
+  /* price */
   .price-row {
     display:flex; align-items:baseline; justify-content:space-between;
-    margin-top:0.9rem; padding-top:0.8rem;
+    margin-top:0.8rem; padding-top:0.7rem;
     border-top:0.5px solid rgba(200,164,74,0.3);
   }
-  .price-tag {
-    font-family:'Noto Serif TC',serif;
-    font-size:18px; font-weight:700; color:var(--ink);
-    letter-spacing:0.04em;
-  }
-  .price-tag small { font-size:10px; font-weight:400; color:#9a8060; margin-right:2px; }
-  .qty-tag {
-    font-size:10px; color:#9a8060;
-    letter-spacing:0.1em;
-  }
-  .qty-tag strong { font-size:13px; color:var(--ink-mid); font-weight:600; }
+  .price-tag { font-family:'Noto Serif TC',serif; font-size:17px; font-weight:700; color:var(--price-text); transition:color 0.3s; }
+  .price-tag small { font-size:9px; font-weight:400; color:var(--qty-text); margin-right:1px; }
+  .qty-tag { font-size:10px; color:var(--qty-text); }
+  .qty-tag strong { font-size:12px; color:var(--spec-text); font-weight:600; }
 
-  /* 套餐 */
-  .bundle-mini {
-    margin-top:0.7rem;
-    border-top:0.5px solid rgba(200,164,74,0.3);
-    padding-top:0.7rem;
-  }
-  .bundle-mini-title {
-    font-size:9px; color:var(--gold-dk);
-    letter-spacing:0.18em; font-family:'Noto Serif TC',serif;
-    margin-bottom:5px;
-  }
-  .bundle-mini-items {
-    display:flex; flex-wrap:wrap; gap:4px;
-  }
+  /* bundle */
+  .bundle-mini { margin-top:0.6rem; border-top:0.5px solid rgba(200,164,74,0.3); padding-top:0.6rem; }
+  .bundle-mini-title { font-size:9px; color:var(--gold-dk); letter-spacing:0.15em; font-family:'Noto Serif TC',serif; margin-bottom:5px; }
+  .bundle-mini-items { display:flex; flex-wrap:wrap; gap:3px; }
   .bundle-chip {
-    font-size:10px; color:#6a5040;
-    background:#f5eedd; border:0.5px solid rgba(200,164,74,0.35);
-    border-radius:99px; padding:2px 8px;
-    letter-spacing:0.03em;
+    font-size:9.5px; color:var(--chip-text);
+    background:var(--chip-bg); border:0.5px solid var(--chip-border);
+    border-radius:99px; padding:2px 7px; transition:background 0.3s;
   }
 
+  /* divider */
   .section-divider {
     height:1px;
     background:linear-gradient(to right,transparent 5%,rgba(200,164,74,0.35) 30%,rgba(200,164,74,0.35) 70%,transparent 95%);
     margin:0 2rem;
   }
-  .donate {
-    padding: 1.6rem 3rem;
-    background: var(--ink);
-    text-align: center;
-  }
-  .donate-title {
-    font-family:'Noto Serif TC',serif;
-    font-size:13px; font-weight:600;
-    color:var(--gold); letter-spacing:0.2em;
-    margin-bottom:1rem;
-  }
-  .donate-box {
-    border:1px solid rgba(200,164,74,0.35);
-    border-radius:10px;
-    padding:1rem 1.4rem;
-    display:inline-block;
-    text-align:left;
-    min-width:260px;
-  }
-  .donate-row {
-    display:flex; align-items:baseline; gap:8px;
-    margin-bottom:0.5rem;
-  }
+
+  /* purpose */
+  .purpose { padding:1.6rem 2.5rem; text-align:center; background:var(--purpose-bg); transition:background 0.3s; }
+  .purpose-icon { font-size:20px; margin-bottom:0.4rem; }
+  .purpose-title { font-family:'Noto Serif TC',serif; font-size:13px; font-weight:600; color:var(--purpose-title); letter-spacing:0.15em; margin-bottom:0.5rem; transition:color 0.3s; }
+  .purpose-text { font-size:11.5px; line-height:2; color:var(--purpose-text); max-width:480px; margin:0 auto; transition:color 0.3s; }
+
+  /* donate */
+  .donate { padding:1.4rem 2.5rem; background:var(--ink); text-align:center; }
+  .donate-title { font-family:'Noto Serif TC',serif; font-size:12px; font-weight:600; color:var(--gold); letter-spacing:0.2em; margin-bottom:0.9rem; }
+  .donate-box { border:1px solid rgba(200,164,74,0.35); border-radius:10px; padding:0.9rem 1.2rem; display:inline-block; text-align:left; min-width:240px; }
+  .donate-row { display:flex; align-items:baseline; gap:8px; margin-bottom:0.45rem; }
   .donate-row:last-child { margin-bottom:0; }
-  .donate-label {
-    font-size:10px; color:rgba(200,164,74,0.6);
-    letter-spacing:0.12em; white-space:nowrap;
-    font-family:'Noto Serif TC',serif;
-    flex-shrink:0;
-  }
-  .donate-value {
-    font-size:14px; font-weight:600;
-    color:var(--gold-lt); letter-spacing:0.06em;
-    font-family:'Noto Serif TC',serif;
-  }
-  .donate-note {
-    font-size:11px; color:rgba(245,240,228,0.35);
-    letter-spacing:0.08em; margin-top:0.9rem;
-    line-height:1.8;
-  }
-    padding: 1.6rem 3rem;
-    background: var(--ink);
-    text-align: center;
-  }
-  .donate-title {
-    font-family:'Noto Serif TC',serif;
-    font-size:13px; font-weight:600;
-    color:var(--gold); letter-spacing:0.2em;
-    margin-bottom:1rem;
-  }
-  .donate-box {
-    border:1px solid rgba(200,164,74,0.35);
-    border-radius:10px;
-    padding:1rem 1.4rem;
-    display:inline-block;
-    text-align:left;
-    min-width:260px;
-  }
-  .donate-row {
-    display:flex; align-items:baseline; gap:8px;
-    margin-bottom:0.5rem;
-  }
-  .donate-row:last-child { margin-bottom:0; }
-  .donate-label {
-    font-size:10px; color:rgba(200,164,74,0.6);
-    letter-spacing:0.12em; white-space:nowrap;
-    font-family:'Noto Serif TC',serif;
-    flex-shrink:0;
-  }
-  .donate-value {
-    font-size:14px; font-weight:600;
-    color:var(--gold-lt); letter-spacing:0.06em;
-    font-family:'Noto Serif TC',serif;
-  }
-  .donate-note {
-    font-size:11px; color:rgba(245,240,228,0.35);
-    letter-spacing:0.08em; margin-top:0.9rem;
-    line-height:1.8;
-  }
-  .purpose { padding:1.8rem 3rem; text-align:center; background:linear-gradient(to bottom,var(--paper),var(--paper-dk)); }
-  .purpose-icon { font-size:22px; margin-bottom:0.5rem; }
-  .purpose-title { font-family:'Noto Serif TC',serif; font-size:14px; font-weight:600; color:var(--ink); letter-spacing:0.15em; margin-bottom:0.6rem; }
-  .purpose-text { font-size:12px; line-height:2; color:#6a5a40; max-width:480px; margin:0 auto; }
-  .footer { background:var(--ink); padding:1.2rem 3rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
-  .footer-left { font-family:'Noto Serif TC',serif; font-size:11px; color:rgba(200,164,74,0.7); letter-spacing:0.15em; line-height:1.8; }
-  .footer-badge { border:1px solid rgba(200,164,74,0.4); padding:0.5rem 1.2rem; text-align:center; }
-  .footer-badge-main { font-family:'Noto Serif TC',serif; font-size:13px; color:var(--gold-lt); letter-spacing:0.12em; }
-  .footer-badge-sub { font-size:10px; color:rgba(200,164,74,0.55); letter-spacing:0.1em; margin-top:2px; }
-  .footer-right { font-size:10px; color:rgba(245,240,228,0.3); letter-spacing:0.1em; text-align:right; line-height:1.8; }
+  .donate-label { font-size:9px; color:rgba(200,164,74,0.6); letter-spacing:0.12em; white-space:nowrap; font-family:'Noto Serif TC',serif; flex-shrink:0; }
+  .donate-value { font-size:13px; font-weight:600; color:var(--gold-lt); letter-spacing:0.05em; font-family:'Noto Serif TC',serif; }
+  .donate-note { font-size:10.5px; color:rgba(245,240,228,0.35); letter-spacing:0.06em; margin-top:0.8rem; line-height:1.8; }
+
+  /* footer */
+  .footer { background:var(--ink); padding:1.1rem 2.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .footer-left { font-family:'Noto Serif TC',serif; font-size:10px; color:rgba(200,164,74,0.7); letter-spacing:0.12em; line-height:1.8; }
+  .footer-badge { border:1px solid rgba(200,164,74,0.4); padding:0.45rem 1rem; text-align:center; }
+  .footer-badge-main { font-family:'Noto Serif TC',serif; font-size:12px; color:var(--gold-lt); letter-spacing:0.12em; }
+  .footer-badge-sub { font-size:9px; color:rgba(200,164,74,0.55); letter-spacing:0.08em; margin-top:2px; }
+  .footer-right { font-size:9.5px; color:rgba(245,240,228,0.3); letter-spacing:0.08em; text-align:right; line-height:1.8; }
+
+  /* corners */
   .corner { position:absolute; width:18px; height:18px; z-index:20; }
   .corner svg { width:100%; height:100%; }
   .corner-tl { top:20px; left:20px; }
   .corner-tr { top:20px; right:20px; transform:scaleX(-1); }
   .corner-bl { bottom:20px; left:20px; transform:scaleY(-1); }
   .corner-br { bottom:20px; right:20px; transform:scale(-1); }
+
+  /* wave fill adapts to product-bg */
+  .wave-fill { fill:var(--product-bg); transition:fill 0.3s; }
 </style>
 </head>
 <body>
+
+<!-- ── CONTROL BAR ── -->
+<div class="ctrl-bar">
+  <button class="ctrl-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
+  <button class="ctrl-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="ctrl-btn" id="btn-dark" onclick="setMode('dark')">🌙 深色</button>
+  <button class="ctrl-btn" id="btn-light" onclick="setMode('light')">☀️ 淺色</button>
+</div>
 
 <div class="poster">
   <div class="corner corner-tl"><svg viewBox="0 0 18 18" fill="none"><path d="M1 17V3Q1 1 3 1H17" stroke="#C8A44A" stroke-width="0.8" opacity="0.6"/><circle cx="1" cy="1" r="1.5" fill="#C8A44A" opacity="0.5"/></svg></div>
@@ -257,59 +246,65 @@
   <div class="corner corner-bl"><svg viewBox="0 0 18 18" fill="none"><path d="M1 17V3Q1 1 3 1H17" stroke="#C8A44A" stroke-width="0.8" opacity="0.6"/><circle cx="1" cy="1" r="1.5" fill="#C8A44A" opacity="0.5"/></svg></div>
   <div class="corner corner-br"><svg viewBox="0 0 18 18" fill="none"><path d="M1 17V3Q1 1 3 1H17" stroke="#C8A44A" stroke-width="0.8" opacity="0.6"/><circle cx="1" cy="1" r="1.5" fill="#C8A44A" opacity="0.5"/></svg></div>
 
+  <!-- HEADER -->
   <div class="header">
     <div class="header-bg"></div>
-    <p class="school-label">國立花蓮高級中學 · 九十週年校慶</p>
+    <p class="school-label" data-zh="國立花蓮高級中學 · 九十週年校慶" data-en="Hualien Senior High School · 90th Anniversary"></p>
     <div class="gold-line"></div>
-    <h1 class="main-title">九十花中・仁心遠揚</h1>
-    <p class="sub-title">90th Anniversary Charity Bazaar</p>
+    <h1 class="main-title" data-zh="九十花中・仁心遠揚" data-en="90th HLHS · Benevolence Beyond Borders"></h1>
+    <p class="sub-title" data-zh="90th Anniversary Charity Bazaar" data-en="Curriculum Achievement Charity Sale"></p>
     <div class="gold-line"></div>
-    <p class="header-desc">課程成果義賣・為數位建設募款</p>
+    <p class="header-desc" data-zh="課程成果義賣・為數位建設募款" data-en="Supporting Digital Infrastructure · Limited Edition Items"></p>
     <div class="wave-top">
       <svg viewBox="0 0 680 32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0 32L0 18Q85 4 170 18Q255 32 340 18Q425 4 510 18Q595 32 680 18L680 32Z" fill="#F5F0E4"/>
+        <path class="wave-fill" d="M0 32L0 18Q85 4 170 18Q255 32 340 18Q425 4 510 18Q595 32 680 18L680 32Z"/>
       </svg>
     </div>
   </div>
 
+  <!-- INTRO BAND -->
   <div class="intro-band">
-    <span>師生協作</span><div class="dot"></div>
-    <span>雷射精工</span><div class="dot"></div>
-    <span>限量義賣</span><div class="dot"></div>
-    <span>全數挹注數位建設</span>
+    <span data-zh="師生協作" data-en="Student-Teacher Collaboration"></span><div class="dot"></div>
+    <span data-zh="雷射精工" data-en="Laser Craftsmanship"></span><div class="dot"></div>
+    <span data-zh="限量義賣" data-en="Limited Edition"></span><div class="dot"></div>
+    <span data-zh="全數挹注數位建設" data-en="All Proceeds to Digital Infrastructure"></span>
   </div>
 
+  <!-- PRODUCTS -->
   <div class="products">
 
     <!-- 作品一 -->
     <div class="product">
       <div class="product-num">01</div>
-      <a class="img-zone" href="qixing.html">
+      <a class="img-zone" href="qixing.html" data-hint-zh="查看詳情 →" data-hint-en="View Details →">
         <div class="img-zone-inner">
           <img src="qixing.png" class="product-photo" alt="七星石光">
         </div>
       </a>
-      <p class="product-label">作品 01</p>
-      <p class="product-name">七星石光</p>
+      <p class="product-label" data-zh="作品 01" data-en="ITEM 01"></p>
+      <p class="product-name" data-zh="七星石光" data-en="Star Stone Light"></p>
       <p class="product-name-en">Star Stone Light</p>
-      <p class="product-desc">傳說只要和愛人在花蓮七星潭的海灘上，親手堆疊起七顆鵝卵石，就會永遠在一起。而疊得越高就越能實現心中的願望，幸福長長久久。本作品以七星潭「疊石」為靈感，將帶不走的海景，變成帶得走的祝福。願生活如疊石般平衡、穩健地朝夢想邁進！(文字：杜宇華) </p>
+      <p class="product-desc"
+        data-zh="七星疊石象徵平衡與圓滿，四面相接的波浪曲線勾勒花蓮海洋意象。木質柔化的暖光，透過石影投灑桌面，溫暖著遊子的心。"
+        data-en="Seven stacked stones symbolize balance and wholeness. Wave-edged panels evoke Hualien's ocean spirit. Warm light filters through the stone silhouettes, casting a gentle glow upon the desk.">
+      </p>
       <ul class="spec-list">
-        <li>雷射精雕木質四面燈箱</li>
-        <li>描圖紙均勻柔光</li>
-        <li>3W LED 暖黃光源</li>
-        <li>頂端校徽 × 校慶標語</li>
+        <li data-zh="雷射精雕木質四面燈箱" data-en="4-panel laser-carved wooden lantern"></li>
+        <li data-zh="描圖紙均勻柔光" data-en="Tracing paper diffuses light evenly"></li>
+        <li data-zh="3W LED 暖黃光源" data-en="3W warm-white LED"></li>
+        <li data-zh="頂端校徽 × 校慶標語" data-en="School crest & anniversary motto on top"></li>
       </ul>
       <div class="price-row">
         <div class="price-tag"><small>NT$</small>3,500</div>
-        <div class="qty-tag">限量 <strong>50</strong> 組</div>
+        <div class="qty-tag" data-zh="限量 <strong>50</strong> 組" data-en="Limited <strong>50</strong> sets"></div>
       </div>
       <div class="bundle-mini">
-        <div class="bundle-mini-title">✦ 套餐內容</div>
+        <div class="bundle-mini-title" data-zh="✦ 套餐內容" data-en="✦ Bundle Includes"></div>
         <div class="bundle-mini-items">
-          <span class="bundle-chip">紀念夾A款 ×1</span>
-          <span class="bundle-chip">海景明信片 ×1</span>
-          <span class="bundle-chip">兔子扇 ×1</span>
-          <span class="bundle-chip">紀念鑰匙圈 ×1</span>
+          <span class="bundle-chip" data-zh="紀念夾A款 ×1" data-en="Folder Type-A ×1"></span>
+          <span class="bundle-chip" data-zh="海景明信片 ×1" data-en="Ocean Postcard ×1"></span>
+          <span class="bundle-chip" data-zh="兔子扇 ×1" data-en="Rabbit Fan ×1"></span>
+          <span class="bundle-chip" data-zh="紀念鑰匙圈 ×1" data-en="Memorial Keyring ×1"></span>
         </div>
       </div>
     </div>
@@ -317,33 +312,36 @@
     <!-- 作品二 -->
     <div class="product">
       <div class="product-num">02</div>
-      <a class="img-zone" href="huahao.html">
+      <a class="img-zone" href="huahao.html" data-hint-zh="查看詳情 →" data-hint-en="View Details →">
         <div class="img-zone-inner">
           <img src="huahao.png" class="product-photo" alt="花好咖啡">
         </div>
       </a>
-      <p class="product-label">作品 02</p>
-      <p class="product-name">花好咖啡</p>
+      <p class="product-label" data-zh="作品 02" data-en="ITEM 02"></p>
+      <p class="product-name" data-zh="花好咖啡" data-en="Floral Coffee Cup"></p>
       <p class="product-name-en">Floral Coffee Cup</p>
-      <p class="product-desc">將李錦明同學獲獎的LOGO設計，鯨魚躍浪、燈塔守望刻印九十週年榮光，由師生將其雕於杯身，帶著溫暖隨行，陪伴著每一天。</p>
+      <p class="product-desc"
+        data-zh="由錦明同學獲獎的logo設計，鯨魚躍浪、燈塔守望刻印九十週年榮光，再由資媒組老師及同學將其雕於不鏽鋼杯身，帶著溫暖隨行，陪伴著每一天。"
+        data-en="Award-winning logo by student Chin-Ming — a whale leaping through waves with a lighthouse standing guard — laser-engraved on stainless steel by teachers and students of the media program. Carry the warmth with you every day.">
+      </p>
       <ul class="spec-list">
-        <li>學生第一名獲獎設計</li>
-        <li>精密雷射雕刻杯身</li>
-        <li>矽膠軟蓋密封防漏</li>
-        <li>直紋矽膠防燙護墊</li>
+        <li data-zh="學生第一名獲獎設計" data-en="1st-place student award design"></li>
+        <li data-zh="精密雷射雕刻杯身" data-en="Precision laser engraving on cup"></li>
+        <li data-zh="矽膠軟蓋密封防漏" data-en="Silicone lid — leak-proof seal"></li>
+        <li data-zh="直紋矽膠防燙護墊" data-en="Ribbed silicone heat sleeve"></li>
       </ul>
       <div class="price-row">
         <div class="price-tag"><small>NT$</small>2,000</div>
-        <div class="qty-tag">限量 <strong>50</strong> 組</div>
+        <div class="qty-tag" data-zh="限量 <strong>50</strong> 組" data-en="Limited <strong>50</strong> sets"></div>
       </div>
       <div class="bundle-mini">
-        <div class="bundle-mini-title">✦ 套餐內容</div>
+        <div class="bundle-mini-title" data-zh="✦ 套餐內容" data-en="✦ Bundle Includes"></div>
         <div class="bundle-mini-items">
-          <span class="bundle-chip">濾掛咖啡包 ×2</span>
-          <span class="bundle-chip">紀念夾A款 ×1</span>
-          <span class="bundle-chip">海景明信片 ×1</span>
-          <span class="bundle-chip">兔子扇 ×1</span>
-          <span class="bundle-chip">紀念鑰匙圈 ×1</span>
+          <span class="bundle-chip" data-zh="濾掛咖啡包 ×2" data-en="Drip Coffee Pack ×2"></span>
+          <span class="bundle-chip" data-zh="紀念夾A款 ×1" data-en="Folder Type-A ×1"></span>
+          <span class="bundle-chip" data-zh="海景明信片 ×1" data-en="Ocean Postcard ×1"></span>
+          <span class="bundle-chip" data-zh="兔子扇 ×1" data-en="Rabbit Fan ×1"></span>
+          <span class="bundle-chip" data-zh="紀念鑰匙圈 ×1" data-en="Memorial Keyring ×1"></span>
         </div>
       </div>
     </div>
@@ -351,40 +349,87 @@
 
   <div class="section-divider"></div>
 
+  <!-- PURPOSE -->
   <div class="purpose">
     <div class="purpose-icon">🏫</div>
-    <p class="purpose-title">義 賣 目 的</p>
-    <p class="purpose-text">本次義賣所得將全數挹注學校數位建設，為花蓮高中的學子們打造更優質的學習環境。每一件作品均由師生共同設計、製作，承載著師生攜手的創意與心意。感謝您的支持，讓我們一起為下一代的未來盡一份心力。</p>
+    <p class="purpose-title" data-zh="義 賣 目 的" data-en="OUR PURPOSE"></p>
+    <p class="purpose-text"
+      data-zh="本次義賣所得將全數挹注學校數位建設，為花蓮高中的學子們打造更優質的學習環境。每一件作品均由師生共同設計、製作，承載著師生攜手的創意與心意。感謝您的支持，讓我們一起為下一代的未來盡一份心力。"
+      data-en="All proceeds from this charity bazaar will be directed to the school's digital infrastructure, creating a better learning environment for HLHS students. Every item is designed and crafted collaboratively by teachers and students. Thank you for your support in building a brighter future for the next generation.">
+    </p>
   </div>
 
+  <!-- DONATE -->
   <div class="donate">
-    <p class="donate-title">✦ 捐 款 帳 號 ✦</p>
+    <p class="donate-title" data-zh="✦ 捐 款 帳 號 ✦" data-en="✦ DONATION ACCOUNT ✦"></p>
     <div class="donate-box">
       <div class="donate-row">
-        <span class="donate-label">銀行</span>
-        <span class="donate-value">台灣銀行花蓮分行</span>
+        <span class="donate-label" data-zh="銀行" data-en="Bank"></span>
+        <span class="donate-value" data-zh="台灣銀行花蓮分行" data-en="Bank of Taiwan, Hualien Branch"></span>
       </div>
       <div class="donate-row">
-        <span class="donate-label">帳號</span>
+        <span class="donate-label" data-zh="帳號" data-en="Account"></span>
         <span class="donate-value">018-036-07538-6</span>
       </div>
       <div class="donate-row">
-        <span class="donate-label">戶名</span>
-        <span class="donate-value">中等學校基金－花蓮高中 401 專戶</span>
+        <span class="donate-label" data-zh="戶名" data-en="Account Name"></span>
+        <span class="donate-value" data-zh="中等學校基金－花蓮高中 401 專戶" data-en="Secondary School Fund — HLHS Account 401"></span>
       </div>
     </div>
-    <p class="donate-note">匯款後請保留收據，以利核對紀錄。<br>感謝您的慷慨捐助，花中師生由衷感謝。</p>
+    <p class="donate-note"
+      data-zh="匯款後請保留收據，以利核對紀錄。感謝您的慷慨捐助，花中師生由衷感謝。"
+      data-en="Please keep your transfer receipt for record purposes. HLHS teachers and students sincerely thank you for your generous support.">
+    </p>
   </div>
 
+  <!-- FOOTER -->
   <div class="footer">
-    <div class="footer-left">國立花蓮高級中學<br>九十週年校慶義賣</div>
+    <div class="footer-left" data-zh="國立花蓮高級中學<br>九十週年校慶義賣" data-en="Hualien Senior High School<br>90th Anniversary Bazaar"></div>
     <div class="footer-badge">
-      <div class="footer-badge-main">仁心遠揚</div>
-      <div class="footer-badge-sub">Benevolence Beyond Borders</div>
+      <div class="footer-badge-main" data-zh="仁心遠揚" data-en="Benevolence Beyond Borders"></div>
+      <div class="footer-badge-sub" data-zh="Benevolence Beyond Borders" data-en="HLHS 90th Anniversary"></div>
     </div>
-    <div class="footer-right">數位建設募款<br>校慶限定義賣</div>
+    <div class="footer-right" data-zh="數位建設募款<br>校慶限定義賣" data-en="Digital Infrastructure Fund<br>Limited Charity Items"></div>
   </div>
 </div>
 
+<script>
+  let currentLang = 'zh';
+  let currentMode = 'dark';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    // update all data-zh / data-en elements
+    document.querySelectorAll('[data-zh]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val !== null) el.innerHTML = val;
+    });
+
+    // update img-zone hover hint via data-hint attribute
+    document.querySelectorAll('.img-zone[data-hint-zh]').forEach(el => {
+      el.setAttribute('data-hint', el.getAttribute('data-hint-' + lang));
+    });
+
+    // update page title
+    document.title = lang === 'zh'
+      ? '九十花中 仁心遠揚 — 校慶義賣'
+      : 'HLHS 90th Anniversary Charity Bazaar';
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    document.body.classList.toggle('light', mode === 'light');
+    document.getElementById('btn-dark').classList.toggle('active', mode === 'dark');
+    document.getElementById('btn-light').classList.toggle('active', mode === 'light');
+  }
+
+  // init
+  setLang('zh');
+  setMode('dark');
+</script>
 </body>
 </html>

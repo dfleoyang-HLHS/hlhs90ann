@@ -6,191 +6,137 @@
 <title>七星石光 — 義賣展示卡</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+  :root {
+    --gold:#C8A44A; --gold-lt:#E8C870; --gold-dk:#8A6820;
+    --card-bg:#fff; --body-bg:#f5f0e8;
+    --title-color:#1a1a1a; --desc-color:#555; --feat-sub:#888;
+    --tag-color:#8a5c1a; --tag-bg:#fdf6e8; --tag-border:#e0c88a;
+    --pricing-bg:#1a1814; --price-color:#E8C870;
+    --qty-color:#C8A44A; --bundle-bg:#fffaf2; --bundle-border:#e8d8b0;
+    --bundle-title:#8a6820; --item-color:#3a3020; --item-border:#eddfc0;
+    --badge-bg:#c8a44a; --badge-text:#3a2008;
+    --back-color:#7a5c28; --back-hover:#EF9F27;
+  }
+  body.light {
+    --card-bg:#ffffff; --body-bg:#ede8de;
+    --title-color:#1a1208; --desc-color:#4a3a28; --feat-sub:#6a5a48;
+    --tag-color:#6a4010; --tag-bg:#fef8ec; --tag-border:#d4b870;
+    --pricing-bg:#2a1e0c; --price-color:#E8C870;
+    --qty-color:#D4A040; --bundle-bg:#fff8ee; --bundle-border:#d8c8a0;
+    --bundle-title:#7a5810; --item-color:#2a2010; --item-border:#ddc8a0;
+    --badge-bg:#b89030; --badge-text:#1a0c00;
+    --back-color:#6a4c18; --back-hover:#c87820;
+  }
+
   body {
-    font-family: 'Noto Sans TC', sans-serif;
-    background: #f5f0e8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.2rem 1rem 2rem;
-    min-height: 100vh;
+    font-family:'Noto Sans TC',sans-serif;
+    background:var(--body-bg);
+    display:flex; flex-direction:column; align-items:center;
+    padding:1rem 1rem 2rem; min-height:100vh;
+    transition:background 0.3s;
   }
-  .back-btn {
-    width: 100%;
-    max-width: 420px;
-    margin-bottom: 0.8rem;
+
+  /* ctrl bar */
+  .ctrl-bar {
+    width:100%; max-width:420px;
+    display:flex; justify-content:flex-end; gap:6px; margin-bottom:0.6rem;
   }
+  .ctrl-btn {
+    font-size:11px; padding:4px 12px; border-radius:99px; cursor:pointer;
+    border:1px solid rgba(180,130,30,0.4);
+    background:rgba(180,130,30,0.08); color:#9a6a20;
+    transition:background 0.15s; letter-spacing:0.06em;
+  }
+  .ctrl-btn:hover, .ctrl-btn.active { background:rgba(180,130,30,0.20); color:#7a4a10; }
+
+  .back-btn { width:100%; max-width:420px; margin-bottom:0.5rem; }
   .back-btn a {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: #7a5c28;
-    text-decoration: none;
-    padding: 6px 2px;
-    letter-spacing: 0.05em;
-    transition: color 0.15s;
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:12px; color:var(--back-color); text-decoration:none;
+    padding:4px 2px; letter-spacing:0.05em; transition:color 0.15s;
   }
-  .back-btn a:hover { color: #EF9F27; }
-  .back-btn a::before { content: '←'; font-size: 14px; }
+  .back-btn a:hover { color:var(--back-hover); }
+  .back-btn a::before { content:'←'; font-size:13px; }
+
   .card {
-    background: #fff;
-    border-radius: 18px;
-    overflow: hidden;
-    max-width: 420px;
-    width: 100%;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    background:var(--card-bg); border-radius:18px; overflow:hidden;
+    max-width:420px; width:100%;
+    box-shadow:0 8px 40px rgba(0,0,0,0.12);
+    transition:background 0.3s;
   }
-  .photo-wrap {
-    width: 100%;
-    height: 312px;
-    overflow: hidden;
-    position: relative;
-  }
+
+  .photo-wrap { width:100%; height:312px; overflow:hidden; position:relative; }
   .photo-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 40%;
-    display: block;
-    filter: brightness(1.05) contrast(1.05) saturate(0.88) hue-rotate(-8deg);
+    width:100%; height:100%; object-fit:cover; object-position:center 40%; display:block;
+    filter:brightness(1.05) contrast(1.05) saturate(0.88) hue-rotate(-8deg);
   }
   .photo-badge {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    background: rgba(120,80,10,0.82);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    padding: 5px 12px;
-    border-radius: 99px;
-  }
-  .body { padding: 1.6rem 1.6rem 1.8rem; }
-  .title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: #1a1a1a;
-    letter-spacing: 0.05em;
-  }
-  .title-en {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    font-style: italic;
-    color: #999;
-    letter-spacing: 0.06em;
-    margin-top: 3px;
-    margin-bottom: 12px;
-  }
-  .slogan {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: #7a4e10;
-    border-left: 3px solid #EF9F27;
-    padding-left: 10px;
-    margin: 12px 0 14px;
-    letter-spacing: 0.08em;
-  }
-  .desc { font-size: 13.5px; line-height: 2; color: #555; margin-bottom: 18px; }
-  .divider { border: none; border-top: 1px solid #eee; margin: 16px 0; }
-  .feat { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
-  .feat-icon {
-    width: 34px; height: 34px; border-radius: 10px;
-    background: #FEF3E2;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-size: 17px;
-  }
-  .feat-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 1px; }
-  .feat-sub { font-size: 12px; color: #888; line-height: 1.5; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
-  .tag {
-    font-size: 11.5px; color: #8a5c1a;
-    padding: 4px 12px; border-radius: 99px;
-    border: 1px solid #e0c88a; background: #fdf6e8;
+    position:absolute; top:14px; left:14px;
+    background:var(--badge-bg); color:var(--badge-text);
+    font-size:11px; font-weight:600; letter-spacing:0.1em;
+    padding:5px 12px; border-radius:99px;
   }
 
-  /* 定價區 */
-  .pricing {
-    display: flex; align-items: center; justify-content: space-between;
-    background: #1a1814; border-radius: 12px;
-    padding: 1rem 1.2rem; margin: 18px 0 0;
-  }
-  .price-left {}
-  .price-label {
-    font-size: 10px; color: rgba(200,164,74,0.65);
-    letter-spacing: 0.18em; font-family: 'Noto Serif TC', serif;
-    margin-bottom: 4px;
-  }
-  .price-amount {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 28px; font-weight: 700;
-    color: #E8C870; letter-spacing: 0.04em;
-  }
-  .price-amount span { font-size: 14px; font-weight: 400; margin-right: 2px; }
-  .price-right { text-align: right; }
-  .qty-label {
-    font-size: 10px; color: rgba(200,164,74,0.65);
-    letter-spacing: 0.18em; font-family: 'Noto Serif TC', serif;
-    margin-bottom: 4px;
-  }
-  .qty-amount {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 20px; font-weight: 600;
-    color: #C8A44A; letter-spacing: 0.04em;
-  }
-  .qty-amount span { font-size: 13px; font-weight: 400; }
+  .body { padding:1.5rem 1.5rem 1.8rem; }
+  .title { font-family:'Noto Serif TC',serif; font-size:24px; font-weight:700; color:var(--title-color); letter-spacing:0.05em; transition:color 0.3s; }
+  .title-en { font-family:'Cormorant Garamond',serif; font-size:12px; font-style:italic; color:var(--gold-dk); letter-spacing:0.06em; margin-top:3px; margin-bottom:11px; }
+  .slogan { font-family:'Noto Serif TC',serif; font-size:13px; font-weight:600; color:#7a4e10; border-left:3px solid #EF9F27; padding-left:10px; margin:11px 0 13px; letter-spacing:0.08em; }
+  .desc { font-size:13px; line-height:1.95; color:var(--desc-color); margin-bottom:16px; transition:color 0.3s; }
 
-  /* 套餐區 */
-  .bundle {
-    border: 1px solid #e8d8b0;
-    border-radius: 12px;
-    padding: 1rem 1.2rem;
-    margin-top: 14px;
-    background: #fffaf2;
-  }
-  .bundle-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 11px; font-weight: 600;
-    color: #8a6820; letter-spacing: 0.18em;
-    margin-bottom: 10px;
-  }
-  .bundle-item {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 13px; color: #3a3020;
-    padding: 5px 0;
-    border-bottom: 0.5px solid #eddfc0;
-  }
-  .bundle-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .bundle-item .qty-badge {
-    font-size: 10px; font-weight: 600;
-    color: #8a5c1a; background: #fdecc8;
-    padding: 1px 7px; border-radius: 99px;
-    flex-shrink: 0;
-  }
+  .divider { border:none; border-top:1px solid #eee; margin:14px 0; }
+
+  .feat { display:flex; gap:10px; align-items:flex-start; margin-bottom:10px; }
+  .feat-icon { width:32px; height:32px; border-radius:9px; background:#FEF3E2; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
+  .feat-title { font-size:12.5px; font-weight:600; color:var(--title-color); margin-bottom:1px; transition:color 0.3s; }
+  .feat-sub { font-size:11.5px; color:var(--feat-sub); line-height:1.5; transition:color 0.3s; }
+
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+  .tag { font-size:11px; color:var(--tag-color); padding:4px 11px; border-radius:99px; border:1px solid var(--tag-border); background:var(--tag-bg); transition:all 0.3s; }
+
+  /* pricing */
+  .pricing { display:flex; align-items:center; justify-content:space-between; background:var(--pricing-bg); border-radius:12px; padding:0.95rem 1.1rem; margin:16px 0 0; transition:background 0.3s; }
+  .price-label { font-size:9px; color:rgba(200,164,74,0.65); letter-spacing:0.18em; font-family:'Noto Serif TC',serif; margin-bottom:3px; }
+  .price-amount { font-family:'Noto Serif TC',serif; font-size:26px; font-weight:700; color:var(--price-color); }
+  .price-amount span { font-size:13px; font-weight:400; margin-right:1px; }
+  .qty-label { font-size:9px; color:rgba(200,164,74,0.65); letter-spacing:0.18em; font-family:'Noto Serif TC',serif; margin-bottom:3px; text-align:right; }
+  .qty-amount { font-family:'Noto Serif TC',serif; font-size:18px; font-weight:600; color:var(--qty-color); text-align:right; }
+  .qty-amount span { font-size:12px; font-weight:400; }
+
+  /* bundle */
+  .bundle { border:1px solid var(--bundle-border); border-radius:12px; padding:0.95rem 1.1rem; margin-top:12px; background:var(--bundle-bg); transition:all 0.3s; }
+  .bundle-title { font-family:'Noto Serif TC',serif; font-size:10px; font-weight:600; color:var(--bundle-title); letter-spacing:0.18em; margin-bottom:9px; }
+  .bundle-item { display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--item-color); padding:4px 0; border-bottom:0.5px solid var(--item-border); transition:color 0.3s; }
+  .bundle-item:last-child { border-bottom:none; padding-bottom:0; }
+  .bundle-item .qty-badge { font-size:9.5px; font-weight:600; color:#085041; background:#c0e8d8; padding:1px 7px; border-radius:99px; flex-shrink:0; }
+  .bundle-item.main-item .qty-badge { color:#633806; background:#fdecc8; }
 </style>
 </head>
 <body>
-<div class="back-btn"><a href="index.html">回首頁</a></div>
-<div class="card">
 
+<div class="ctrl-bar">
+  <button class="ctrl-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
+  <button class="ctrl-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="ctrl-btn" id="btn-dark" onclick="setMode('dark')">🌙 深色</button>
+  <button class="ctrl-btn" id="btn-light" onclick="setMode('light')">☀️ 淺色</button>
+</div>
+
+<div class="back-btn"><a href="index.html" data-zh="回首頁" data-en="Back to Home"></a></div>
+
+<div class="card">
   <div class="photo-wrap">
-    <img src="qixing.png" alt="七星石光 — 木質疊石雷射雕刻方形燈箱">
-    <span class="photo-badge">作品 01 · 九十週年限定</span>
+    <img src="qixing.png" alt="七星石光">
+    <span class="photo-badge" data-zh="作品 01 · 九十週年限定" data-en="Item 01 · 90th Anniversary Edition"></span>
   </div>
 
   <div class="body">
-    <p class="title">七星石光</p>
-    <p class="title-en">Star Stone Light — 木質疊石雷射雕刻方形燈箱</p>
-    <div class="slogan">九十花中、仁心遠揚</div>
-    <p class="desc">
-      四面木質雷射精雕，每面鏤刻層疊石形圖紋，圍合成方形燈箱。
-      內襯描圖紙將 3W LED 光源柔化，透過鏤空石影投灑於桌面，
-      形成迷人暖光光暈。頂端銘刻校徽與校慶標語，點燈之際光影
-      共訴花中九十年的積累與榮光。
+    <p class="title" data-zh="七星石光" data-en="Star Stone Light"></p>
+    <p class="title-en">Star Stone Light — Laser-Carved Wooden Lantern</p>
+    <div class="slogan" data-zh="九十花中、仁心遠揚" data-en="90th HLHS · Benevolence Beyond Borders"></div>
+    <p class="desc"
+      data-zh="七星疊石象徵平衡與圓滿，四面相接的波浪曲線勾勒花蓮海洋意象。木質柔化的暖光，透過石影投灑桌面，溫暖著遊子的心。"
+      data-en="Seven stacked stones symbolize balance and wholeness. Wave-edged panels on all four sides evoke Hualien's ocean spirit. Warm light filtered through the carved stone silhouettes casts a gentle glow upon the desk — a comfort for hearts far from home.">
     </p>
 
     <hr class="divider">
@@ -198,80 +144,103 @@
     <div class="feat">
       <div class="feat-icon">🪵</div>
       <div>
-        <div class="feat-title">四面鏤空燈箱結構</div>
-        <div class="feat-sub">榫接組合，無需螺絲，結構穩固典雅</div>
+        <div class="feat-title" data-zh="四面鏤空燈箱結構" data-en="4-Panel Open Lantern Structure"></div>
+        <div class="feat-sub" data-zh="榫接組合，無需螺絲，結構穩固典雅" data-en="Mortise-and-tenon assembly, no screws required"></div>
       </div>
     </div>
     <div class="feat">
       <div class="feat-icon">🪨</div>
       <div>
-        <div class="feat-title">疊石圖案雷射精雕</div>
-        <div class="feat-sub">每石層次分明，線條細膩流暢</div>
+        <div class="feat-title" data-zh="疊石圖案雷射精雕" data-en="Laser-Engraved Stacked Stone Motif"></div>
+        <div class="feat-sub" data-zh="每石層次分明，線條細膩流暢" data-en="Each stone precisely carved with fluid, layered detail"></div>
       </div>
     </div>
     <div class="feat">
       <div class="feat-icon">💡</div>
       <div>
-        <div class="feat-title">描圖紙柔光 × 3W LED</div>
-        <div class="feat-sub">光線均勻柔和，桌面映出溫暖光暈</div>
+        <div class="feat-title" data-zh="描圖紙柔光 × 3W LED" data-en="Tracing Paper Diffuser × 3W LED"></div>
+        <div class="feat-sub" data-zh="光線均勻柔和，桌面映出溫暖光暈" data-en="Soft, even light with a warm glow on the desk surface"></div>
       </div>
     </div>
     <div class="feat">
       <div class="feat-icon">🔌</div>
       <div>
-        <div class="feat-title">110V 家用電源供電</div>
-        <div class="feat-sub">標準插頭直接使用，安全穩定，即插即亮</div>
+        <div class="feat-title" data-zh="110V 家用電源供電" data-en="110V Standard Power Supply"></div>
+        <div class="feat-sub" data-zh="標準插頭直接使用，安全穩定，即插即亮" data-en="Standard plug — safe, stable, plug-and-glow"></div>
       </div>
     </div>
     <div class="feat">
       <div class="feat-icon">🏅</div>
       <div>
-        <div class="feat-title">頂端校徽 × 九十週年標語</div>
-        <div class="feat-sub">限量製作，極具紀念收藏價值</div>
+        <div class="feat-title" data-zh="頂端校徽 × 九十週年標語" data-en="School Crest & Anniversary Motto on Top"></div>
+        <div class="feat-sub" data-zh="限量製作，極具紀念收藏價值" data-en="Limited edition — a meaningful keepsake"></div>
       </div>
     </div>
 
     <div class="tags">
-      <span class="tag">桌面氛圍燈</span>
-      <span class="tag">限量義賣</span>
-      <span class="tag">師生協作</span>
-      <span class="tag">110V 供電</span>
-      <span class="tag">九十週年紀念</span>
+      <span class="tag" data-zh="桌面氛圍燈" data-en="Ambient Desk Lamp"></span>
+      <span class="tag" data-zh="限量義賣" data-en="Limited Charity Sale"></span>
+      <span class="tag" data-zh="師生協作" data-en="Student-Teacher Made"></span>
+      <span class="tag" data-zh="110V 供電" data-en="110V Power"></span>
+      <span class="tag" data-zh="九十週年紀念" data-en="90th Anniversary"></span>
     </div>
 
     <!-- 定價 -->
     <div class="pricing">
-      <div class="price-left">
-        <div class="price-label">義賣定價</div>
+      <div>
+        <div class="price-label" data-zh="義賣定價" data-en="CHARITY PRICE"></div>
         <div class="price-amount"><span>NT$</span>3,500</div>
       </div>
-      <div class="price-right">
-        <div class="qty-label">限量數量</div>
-        <div class="qty-amount">50 <span>組</span></div>
+      <div>
+        <div class="qty-label" data-zh="限量數量" data-en="QUANTITY"></div>
+        <div class="qty-amount">50 <span data-zh="組" data-en="sets"></span></div>
       </div>
     </div>
 
-    <!-- 套餐內容 -->
+    <!-- 套餐 -->
     <div class="bundle">
-      <div class="bundle-title">✦ 套 餐 內 容</div>
-      <div class="bundle-item">
-        <span class="qty-badge">主角</span>七星石光木質雷射雕刻燈箱
+      <div class="bundle-title" data-zh="✦ 套 餐 內 容" data-en="✦ BUNDLE INCLUDES"></div>
+      <div class="bundle-item main-item">
+        <span class="qty-badge" data-zh="主角" data-en="MAIN"></span>
+        <span data-zh="七星石光木質雷射雕刻燈箱" data-en="Star Stone Light Laser-Carved Wooden Lantern"></span>
       </div>
       <div class="bundle-item">
-        <span class="qty-badge">×1</span>90 週年紀念夾 A 款
+        <span class="qty-badge">×1</span>
+        <span data-zh="90 週年紀念夾 A 款" data-en="90th Anniversary Folder, Type A"></span>
       </div>
       <div class="bundle-item">
-        <span class="qty-badge">×1</span>HLHS 海景明信片
+        <span class="qty-badge">×1</span>
+        <span data-zh="HLHS 海景明信片" data-en="HLHS Ocean View Postcard"></span>
       </div>
       <div class="bundle-item">
-        <span class="qty-badge">×1</span>兔子扇
+        <span class="qty-badge">×1</span>
+        <span data-zh="兔子扇" data-en="Rabbit Fan"></span>
       </div>
       <div class="bundle-item">
-        <span class="qty-badge">×1</span>90 週年紀念鑰匙圈
+        <span class="qty-badge">×1</span>
+        <span data-zh="90 週年紀念鑰匙圈" data-en="90th Anniversary Keyring"></span>
       </div>
     </div>
-
   </div>
 </div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.querySelectorAll('[data-zh]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val !== null) el.innerHTML = val;
+    });
+    document.title = lang === 'zh' ? '七星石光 — 義賣展示卡' : 'Star Stone Light — Charity Item';
+  }
+  function setMode(mode) {
+    document.body.classList.toggle('light', mode === 'light');
+    document.getElementById('btn-dark').classList.toggle('active', mode === 'dark');
+    document.getElementById('btn-light').classList.toggle('active', mode === 'light');
+  }
+  setLang('zh'); setMode('dark');
+</script>
 </body>
 </html>
