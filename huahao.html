@@ -9,26 +9,26 @@
   *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 
   :root {
-    --card-bg:#fff; --body-bg:#f0ede8;
+    --card-bg:#fff; --body-bg:#f5f0e8;
     --title-color:#1a1a1a; --desc-color:#555; --feat-sub:#888;
-    --tag-color:#1D7A5A; --tag-bg:#f0faf6; --tag-border:#b8ddd0;
-    --pricing-bg:#0e2820; --price-color:#5DCAA5;
-    --qty-color:#1D9E75; --bundle-bg:#f4fcf8; --bundle-border:#b8ddd0;
-    --bundle-title:#0F6E56; --item-color:#1a3028; --item-border:#c8e8dc;
-    --badge-bg:rgba(29,110,90,0.88); --badge-text:#fff;
-    --back-color:#1D7A5A; --back-hover:#1D9E75;
-    --slogan-color:#1a5c48; --slogan-border:#1D9E75;
+    --tag-color:#8a5c1a; --tag-bg:#fdf6e8; --tag-border:#e0c88a;
+    --pricing-bg:#1a1814; --price-color:#E8C870;
+    --qty-color:#C8A44A; --bundle-bg:#fffaf2; --bundle-border:#e8d8b0;
+    --bundle-title:#8a6820; --item-color:#3a3020; --item-border:#eddfc0;
+    --badge-bg:rgba(120,80,10,0.85); --badge-text:#fff;
+    --back-color:#7a5c28; --back-hover:#EF9F27;
+    --slogan-color:#7a4e10; --slogan-border:#EF9F27;
   }
   body.light {
-    --card-bg:#ffffff; --body-bg:#e4ede8;
-    --title-color:#0a1e18; --desc-color:#3a4a40; --feat-sub:#5a6a60;
-    --tag-color:#0a5a40; --tag-bg:#eaf8f0; --tag-border:#90cdb8;
-    --pricing-bg:#081a12; --price-color:#3DAA85;
-    --qty-color:#0D8E65; --bundle-bg:#f0faf4; --bundle-border:#a8d8c8;
-    --bundle-title:#0a5a40; --item-color:#0a1e18; --item-border:#b8d8c8;
-    --badge-bg:rgba(10,90,64,0.90); --badge-text:#fff;
-    --back-color:#0a5a40; --back-hover:#0D8E65;
-    --slogan-color:#0a4a38; --slogan-border:#0D8E65;
+    --card-bg:#ffffff; --body-bg:#ede8de;
+    --title-color:#1a1208; --desc-color:#4a3a28; --feat-sub:#6a5a48;
+    --tag-color:#6a4010; --tag-bg:#fef8ec; --tag-border:#d4b870;
+    --pricing-bg:#2a1e0c; --price-color:#E8C870;
+    --qty-color:#D4A040; --bundle-bg:#fff8ee; --bundle-border:#d8c8a0;
+    --bundle-title:#7a5810; --item-color:#2a2010; --item-border:#ddc8a0;
+    --badge-bg:rgba(100,60,8,0.90); --badge-text:#fff;
+    --back-color:#6a4c18; --back-hover:#c87820;
+    --slogan-color:#6a3e08; --slogan-border:#c87820;
   }
 
   body {
@@ -45,11 +45,11 @@
   }
   .ctrl-btn {
     font-size:11px; padding:4px 12px; border-radius:99px; cursor:pointer;
-    border:1px solid rgba(29,120,90,0.4);
-    background:rgba(29,120,90,0.08); color:#1D7A5A;
+    border:1px solid rgba(180,130,30,0.4);
+    background:rgba(180,130,30,0.08); color:#9a6a20;
     transition:background 0.15s; letter-spacing:0.06em;
   }
-  .ctrl-btn:hover, .ctrl-btn.active { background:rgba(29,120,90,0.20); color:#0a5a40; }
+  .ctrl-btn:hover, .ctrl-btn.active { background:rgba(180,130,30,0.20); color:#7a4a10; }
 
   .back-btn { width:100%; max-width:420px; margin-bottom:0.5rem; }
   .back-btn a {
@@ -88,7 +88,7 @@
   .divider { border:none; border-top:1px solid #eee; margin:14px 0; }
 
   .feat { display:flex; gap:10px; align-items:flex-start; margin-bottom:10px; }
-  .feat-icon { width:32px; height:32px; border-radius:9px; background:#e8f5ef; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
+  .feat-icon { width:32px; height:32px; border-radius:9px; background:#FEF3E2; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
   .feat-title { font-size:12.5px; font-weight:600; color:var(--title-color); margin-bottom:1px; transition:color 0.3s; }
   .feat-sub { font-size:11.5px; color:var(--feat-sub); line-height:1.5; transition:color 0.3s; }
 
@@ -109,8 +109,8 @@
   .bundle-title { font-family:'Noto Serif TC',serif; font-size:10px; font-weight:600; color:var(--bundle-title); letter-spacing:0.18em; margin-bottom:9px; }
   .bundle-item { display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--item-color); padding:4px 0; border-bottom:0.5px solid var(--item-border); transition:color 0.3s; }
   .bundle-item:last-child { border-bottom:none; padding-bottom:0; }
-  .bundle-item .qty-badge { font-size:9.5px; font-weight:600; color:#085041; background:#c0e8d8; padding:1px 7px; border-radius:99px; flex-shrink:0; }
-  .bundle-item.main-item .qty-badge { color:#085041; background:#c0e8d8; }
+  .bundle-item .qty-badge { font-size:9.5px; font-weight:600; color:#633806; background:#fdecc8; padding:1px 7px; border-radius:99px; flex-shrink:0; }
+  .bundle-item.main-item .qty-badge { color:#633806; background:#fdecc8; }
 </style>
 </head>
 <body>
