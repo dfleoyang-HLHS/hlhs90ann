@@ -238,6 +238,7 @@
 <div class="ctrl-bar">
   <button class="ctrl-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
   <button class="ctrl-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="ctrl-btn" id="btn-ja" onclick="setLang('ja')">日本語</button>
   <button class="ctrl-btn" id="btn-dark" onclick="setMode('dark')">🌙 深色</button>
   <button class="ctrl-btn" id="btn-light" onclick="setMode('light')">☀️ 淺色</button>
 </div>
@@ -251,12 +252,12 @@
   <!-- HEADER -->
   <div class="header">
     <div class="header-bg"></div>
-    <p class="school-label" data-zh="國立花蓮高級中學 · 九十週年校慶" data-en="Hualien Senior High School · 90th Anniversary"></p>
+    <p class="school-label" data-zh="國立花蓮高級中學 · 九十週年校慶" data-en="Hualien Senior High School · 90th Anniversary" data-ja="国立花蓮高級中学 · 創立90周年記念"></p>
     <div class="gold-line"></div>
-    <h1 class="main-title" data-zh="九十花中・仁心遠揚" data-en="90th HLHS · Benevolence Beyond Borders"></h1>
-    <p class="sub-title" data-zh="90th Anniversary Charity Bazaar" data-en="Curriculum Achievement Charity Sale"></p>
+    <h1 class="main-title" data-zh="九十花中・仁心遠揚" data-en="90th HLHS · Benevolence Beyond Borders" data-ja="創立90周年・仁愛の心よ、遠く広がれ"></h1>
+    <p class="sub-title" data-zh="90th Anniversary Charity Bazaar" data-en="Curriculum Achievement Charity Sale" data-ja="90周年記念チャリティーバザー"></p>
     <div class="gold-line"></div>
-    <p class="header-desc" data-zh="課程成果義賣・為數位建設募款" data-en="Supporting Digital Infrastructure · Limited Edition Items"></p>
+    <p class="header-desc" data-zh="課程成果義賣・為數位建設募款" data-en="Supporting Digital Infrastructure · Limited Edition Items" data-ja="授業成果チャリティー販売・デジタル整備支援のために"></p>
     <div class="wave-top">
       <svg viewBox="0 0 680 32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <path class="wave-fill" d="M0 32L0 18Q85 4 170 18Q255 32 340 18Q425 4 510 18Q595 32 680 18L680 32Z"/>
@@ -266,10 +267,10 @@
 
   <!-- INTRO BAND -->
   <div class="intro-band">
-    <span data-zh="師生協作" data-en="Student-Teacher Collaboration" style="cursor:pointer;" onclick="window.location.href='team.html'"></span><div class="dot"></div>
-    <span data-zh="雷射精工" data-en="Laser Craftsmanship"></span><div class="dot"></div>
-    <span data-zh="限量義賣" data-en="Limited Edition"></span><div class="dot"></div>
-    <span data-zh="全數挹注數位建設" data-en="All Proceeds to Digital Infrastructure"></span>
+    <span data-zh="師生協作" data-en="Student-Teacher Collaboration" data-ja="師生協働" style="cursor:pointer;" onclick="window.location.href='team.html'"></span><div class="dot"></div>
+    <span data-zh="雷射精工" data-en="Laser Craftsmanship" data-ja="レーザー精密加工"></span><div class="dot"></div>
+    <span data-zh="限量義賣" data-en="Limited Edition" data-ja="限定チャリティー販売"></span><div class="dot"></div>
+    <span data-zh="全數挹注數位建設" data-en="All Proceeds to Digital Infrastructure" data-ja="収益全額をデジタル環境整備へ"></span>
   </div>
 
   <!-- PRODUCTS -->
@@ -278,35 +279,36 @@
     <!-- 作品一 -->
     <div class="product">
       <div class="product-num">01</div>
-      <a class="img-zone" href="qixing.html" data-hint-zh="查看詳情 →" data-hint-en="View Details →">
+      <a class="img-zone" href="qixing.html" data-hint-zh="查看詳情 →" data-hint-en="View Details →" data-hint-ja="詳細を見る →">
         <div class="img-zone-inner">
           <img src="qixing.png" class="product-photo" alt="七星石光">
         </div>
       </a>
-      <p class="product-label" data-zh="作品 01" data-en="ITEM 01"></p>
-      <p class="product-name" data-zh="七星石光" data-en="Star Stone Light"></p>
+      <p class="product-label" data-zh="作品 01" data-en="ITEM 01" data-ja="作品 01"></p>
+      <p class="product-name" data-zh="七星石光" data-en="Star Stone Light" data-ja="七星石光"></p>
       <p class="product-name-en">Star Stone Light</p>
       <p class="product-desc"
         data-zh="傳說只要和愛人在花蓮七星潭的海灘上，親手堆疊起七顆鵝卵石，就會永遠在一起。本作品以七星潭「疊石」為靈感，將帶不走的海景，變成帶得走的祝福。（文字：杜宇華）"
-        data-en="Legend has it that stacking seven pebbles on Qixingtan Beach with your loved one means you'll be together forever. This piece transforms a seascape you can't take home into a blessing you can carry anywhere. (Text: Du Yu-Hua)">
+        data-en="Legend has it that stacking seven pebbles on Qixingtan Beach with your loved one means you'll be together forever. This piece transforms a seascape you can't take home into a blessing you can carry anywhere. (Text: Du Yu-Hua)"
+        data-ja="花蓮の七星潭の浜辺で、愛する人と七つの小石を積み上げると、永遠に一緒にいられるという伝説があります。本作品は七星潭の「石積み」にインスピレーションを得て、持ち帰れない海の景色を、持ち歩ける祝福へと変えました。（文：杜宇華）">
       </p>
       <ul class="spec-list">
-        <li data-zh="雷射精雕木質四面燈箱" data-en="4-panel laser-carved wooden lantern"></li>
-        <li data-zh="描圖紙均勻柔光" data-en="Tracing paper diffuses light evenly"></li>
-        <li data-zh="3W LED 暖黃光源" data-en="3W warm-white LED"></li>
-        <li data-zh="頂端校徽 × 校慶標語" data-en="School crest & anniversary motto on top"></li>
+        <li data-zh="雷射精雕木質四面燈箱" data-en="4-panel laser-carved wooden lantern" data-ja="レーザー彫刻木製四面ランタン"></li>
+        <li data-zh="描圖紙均勻柔光" data-en="Tracing paper diffuses light evenly" data-ja="トレーシングペーパーで光を柔らかく拡散"></li>
+        <li data-zh="3W LED 暖黃光源" data-en="3W warm-white LED" data-ja="3W 電球色 LED"></li>
+        <li data-zh="頂端校徽 × 校慶標語" data-en="School crest & anniversary motto on top" data-ja="上部に校章と周年記念標語"></li>
       </ul>
       <div class="price-row">
         <div class="price-tag"><small>NT$</small>3,500</div>
-        <div class="qty-tag" data-zh="限量 <strong>50</strong> 組" data-en="Limited <strong>50</strong> sets"></div>
+        <div class="qty-tag" data-zh="限量 <strong>50</strong> 組" data-en="Limited <strong>50</strong> sets" data-ja="限定 <strong>50</strong> セット"></div>
       </div>
       <div class="bundle-mini">
-        <div class="bundle-mini-title" data-zh="✦ 套餐內容" data-en="✦ Bundle Includes"></div>
+        <div class="bundle-mini-title" data-zh="✦ 套餐內容" data-en="✦ Bundle Includes" data-ja="✦ セット内容"></div>
         <div class="bundle-mini-items">
-          <span class="bundle-chip" data-zh="紀念夾A款 ×1" data-en="Folder Type-A ×1"></span>
-          <span class="bundle-chip" data-zh="海景明信片 ×1" data-en="Ocean Postcard ×1"></span>
-          <span class="bundle-chip" data-zh="兔子扇 ×1" data-en="Rabbit Fan ×1"></span>
-          <span class="bundle-chip" data-zh="紀念鑰匙圈 ×1" data-en="Memorial Keyring ×1"></span>
+          <span class="bundle-chip" data-zh="紀念夾A款 ×1" data-en="Folder Type-A ×1" data-ja="記念クリアファイルA ×1"></span>
+          <span class="bundle-chip" data-zh="海景明信片 ×1" data-en="Ocean Postcard ×1" data-ja="海景ポストカード ×1"></span>
+          <span class="bundle-chip" data-zh="兔子扇 ×1" data-en="Rabbit Fan ×1" data-ja="うさぎ扇子 ×1"></span>
+          <span class="bundle-chip" data-zh="紀念鑰匙圈 ×1" data-en="Memorial Keyring ×1" data-ja="記念キーホルダー ×1"></span>
         </div>
       </div>
     </div>
@@ -314,36 +316,37 @@
     <!-- 作品二 -->
     <div class="product">
       <div class="product-num">02</div>
-      <a class="img-zone" href="huahao.html" data-hint-zh="查看詳情 →" data-hint-en="View Details →">
+      <a class="img-zone" href="huahao.html" data-hint-zh="查看詳情 →" data-hint-en="View Details →" data-hint-ja="詳細を見る →">
         <div class="img-zone-inner">
           <img src="huahao.png" class="product-photo" alt="花好咖啡">
         </div>
       </a>
-      <p class="product-label" data-zh="作品 02" data-en="ITEM 02"></p>
-      <p class="product-name" data-zh="花好咖啡" data-en="Floral Coffee Cup"></p>
+      <p class="product-label" data-zh="作品 02" data-en="ITEM 02" data-ja="作品 02"></p>
+      <p class="product-name" data-zh="花好咖啡" data-en="Floral Coffee Cup" data-ja="花好コーヒーカップ"></p>
       <p class="product-name-en">Floral Coffee Cup</p>
       <p class="product-desc"
         data-zh="由錦明同學獲獎的logo設計，鯨魚躍浪、燈塔守望刻印九十週年榮光，再由資媒組老師及同學將其雕於不鏽鋼杯身，帶著溫暖隨行，陪伴著每一天。"
-        data-en="Award-winning logo by student Chin-Ming — a whale leaping through waves with a lighthouse standing guard — laser-engraved on stainless steel by teachers and students of the media program. Carry the warmth with you every day.">
+        data-en="Award-winning logo by student Chin-Ming — a whale leaping through waves with a lighthouse standing guard — laser-engraved on stainless steel by teachers and students of the media program. Carry the warmth with you every day."
+        data-ja="錦明さんの受賞デザイン——波間を跳ねるクジラと灯台——が、資メディア組の先生と生徒によってステンレスカップにレーザー刻印されました。温もりを携えて、毎日を一緒に。">
       </p>
       <ul class="spec-list">
-        <li data-zh="學生第一名獲獎設計" data-en="1st-place student award design"></li>
-        <li data-zh="精密雷射雕刻杯身" data-en="Precision laser engraving on cup"></li>
-        <li data-zh="矽膠軟蓋密封防漏" data-en="Silicone lid — leak-proof seal"></li>
-        <li data-zh="直紋矽膠防燙護墊" data-en="Ribbed silicone heat sleeve"></li>
+        <li data-zh="學生第一名獲獎設計" data-en="1st-place student award design" data-ja="学生最優秀賞受賞デザイン"></li>
+        <li data-zh="精密雷射雕刻杯身" data-en="Precision laser engraving on cup" data-ja="精密レーザー彫刻カップ本体"></li>
+        <li data-zh="矽膠軟蓋密封防漏" data-en="Silicone lid — leak-proof seal" data-ja="シリコン製ソフトリッド・漏れ防止"></li>
+        <li data-zh="直紋矽膠防燙護墊" data-en="Ribbed silicone heat sleeve" data-ja="リブ付きシリコン断熱スリーブ"></li>
       </ul>
       <div class="price-row">
         <div class="price-tag"><small>NT$</small>2,000</div>
-        <div class="qty-tag" data-zh="限量 <strong>50</strong> 組" data-en="Limited <strong>50</strong> sets"></div>
+        <div class="qty-tag" data-zh="限量 <strong>50</strong> 組" data-en="Limited <strong>50</strong> sets" data-ja="限定 <strong>50</strong> セット"></div>
       </div>
       <div class="bundle-mini">
-        <div class="bundle-mini-title" data-zh="✦ 套餐內容" data-en="✦ Bundle Includes"></div>
+        <div class="bundle-mini-title" data-zh="✦ 套餐內容" data-en="✦ Bundle Includes" data-ja="✦ セット内容"></div>
         <div class="bundle-mini-items">
-          <span class="bundle-chip" data-zh="濾掛咖啡包 ×2" data-en="Drip Coffee Pack ×2"></span>
-          <span class="bundle-chip" data-zh="紀念夾A款 ×1" data-en="Folder Type-A ×1"></span>
-          <span class="bundle-chip" data-zh="海景明信片 ×1" data-en="Ocean Postcard ×1"></span>
-          <span class="bundle-chip" data-zh="兔子扇 ×1" data-en="Rabbit Fan ×1"></span>
-          <span class="bundle-chip" data-zh="紀念鑰匙圈 ×1" data-en="Memorial Keyring ×1"></span>
+          <span class="bundle-chip" data-zh="濾掛咖啡包 ×2" data-en="Drip Coffee Pack ×2" data-ja="ドリップコーヒー ×2"></span>
+          <span class="bundle-chip" data-zh="紀念夾A款 ×1" data-en="Folder Type-A ×1" data-ja="記念クリアファイルA ×1"></span>
+          <span class="bundle-chip" data-zh="海景明信片 ×1" data-en="Ocean Postcard ×1" data-ja="海景ポストカード ×1"></span>
+          <span class="bundle-chip" data-zh="兔子扇 ×1" data-en="Rabbit Fan ×1" data-ja="うさぎ扇子 ×1"></span>
+          <span class="bundle-chip" data-zh="紀念鑰匙圈 ×1" data-en="Memorial Keyring ×1" data-ja="記念キーホルダー ×1"></span>
         </div>
       </div>
     </div>
@@ -354,44 +357,46 @@
   <!-- PURPOSE -->
   <div class="purpose">
     <div class="purpose-icon">🏫</div>
-    <p class="purpose-title" data-zh="義 賣 目 的" data-en="OUR PURPOSE"></p>
+    <p class="purpose-title" data-zh="義 賣 目 的" data-en="OUR PURPOSE" data-ja="チャリティーの目的"></p>
     <p class="purpose-text"
       data-zh="本次義賣所得將全數挹注學校數位建設，為花蓮高中的學子們打造更優質的學習環境。每一件作品均由師生共同設計、製作，承載著師生攜手的創意與心意。感謝您的支持，讓我們一起為下一代的未來盡一份心力。"
-      data-en="All proceeds from this charity bazaar will be directed to the school's digital infrastructure, creating a better learning environment for HLHS students. Every item is designed and crafted collaboratively by teachers and students. Thank you for your support in building a brighter future for the next generation.">
+      data-en="All proceeds from this charity bazaar will be directed to the school's digital infrastructure, creating a better learning environment for HLHS students. Every item is designed and crafted collaboratively by teachers and students. Thank you for your support in building a brighter future for the next generation."
+      data-ja="今回のチャリティー販売の収益は全額、学校のデジタル環境整備に充てられます。花蓮高中の生徒たちにより良い学習環境を提供するため、先生と生徒が共同でデザイン・制作した作品です。ご支援に心より感謝申し上げます。">
     </p>
   </div>
 
   <!-- DONATE -->
   <div class="donate">
-    <p class="donate-title" data-zh="✦ 捐 款 帳 號 ✦" data-en="✦ DONATION ACCOUNT ✦"></p>
+    <p class="donate-title" data-zh="✦ 捐 款 帳 號 ✦" data-en="✦ DONATION ACCOUNT ✦" data-ja="✦ 寄付口座情報 ✦"></p>
     <div class="donate-box">
       <div class="donate-row">
-        <span class="donate-label" data-zh="銀行" data-en="Bank"></span>
-        <span class="donate-value" data-zh="台灣銀行花蓮分行" data-en="Bank of Taiwan, Hualien Branch"></span>
+        <span class="donate-label" data-zh="銀行" data-en="Bank" data-ja="銀行"></span>
+        <span class="donate-value" data-zh="台灣銀行花蓮分行" data-en="Bank of Taiwan, Hualien Branch" data-ja="台湾銀行 花蓮支店"></span>
       </div>
       <div class="donate-row">
-        <span class="donate-label" data-zh="帳號" data-en="Account"></span>
+        <span class="donate-label" data-zh="帳號" data-en="Account" data-ja="口座番号"></span>
         <span class="donate-value">018-036-07538-6</span>
       </div>
       <div class="donate-row">
-        <span class="donate-label" data-zh="戶名" data-en="Account Name"></span>
-        <span class="donate-value" data-zh="中等學校基金－花蓮高中 401 專戶" data-en="Secondary School Fund — HLHS Account 401"></span>
+        <span class="donate-label" data-zh="戶名" data-en="Account Name" data-ja="口座名義"></span>
+        <span class="donate-value" data-zh="中等學校基金－花蓮高中 401 專戶" data-en="Secondary School Fund — HLHS Account 401" data-ja="中等学校基金－花蓮高中401専用口座"></span>
       </div>
     </div>
     <p class="donate-note"
       data-zh="匯款後請保留收據，以利核對紀錄。感謝您的慷慨捐助，花中師生由衷感謝。"
-      data-en="Please keep your transfer receipt for record purposes. HLHS teachers and students sincerely thank you for your generous support.">
+      data-en="Please keep your transfer receipt for record purposes. HLHS teachers and students sincerely thank you for your generous support."
+      data-ja="振込後は領収書を保管してください。花蓮高中の教師・生徒一同、温かいご支援に心より感謝申し上げます。">
     </p>
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
-    <div class="footer-left" data-zh="國立花蓮高級中學<br>九十週年校慶義賣" data-en="Hualien Senior High School<br>90th Anniversary Bazaar"></div>
+    <div class="footer-left" data-zh="國立花蓮高級中學<br>九十週年校慶義賣" data-en="Hualien Senior High School<br>90th Anniversary Bazaar" data-ja="国立花蓮高級中学<br>創立90周年記念チャリティー"></div>
     <div class="footer-badge">
-      <div class="footer-badge-main" data-zh="仁心遠揚" data-en="Benevolence Beyond Borders"></div>
-      <div class="footer-badge-sub" data-zh="Benevolence Beyond Borders" data-en="HLHS 90th Anniversary"></div>
+      <div class="footer-badge-main" data-zh="仁心遠揚" data-en="Benevolence Beyond Borders" data-ja="仁愛遠く広がれ"></div>
+      <div class="footer-badge-sub" data-zh="Benevolence Beyond Borders" data-en="HLHS 90th Anniversary" data-ja="HLHS 創立90周年"></div>
     </div>
-    <div class="footer-right" data-zh="數位建設募款<br>校慶限定義賣" data-en="Digital Infrastructure Fund<br>Limited Charity Items"></div>
+    <div class="footer-right" data-zh="數位建設募款<br>校慶限定義賣" data-en="Digital Infrastructure Fund<br>Limited Charity Items" data-ja="デジタル整備支援<br>限定チャリティー品"></div>
   </div>
 </div>
 
@@ -401,25 +406,24 @@
 
   function setLang(lang) {
     currentLang = lang;
-    document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
-    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-    // update all data-zh / data-en elements
+    const langMap = { zh:'zh-TW', en:'en', ja:'ja' };
+    document.documentElement.lang = langMap[lang] || 'zh-TW';
+    ['zh','en','ja'].forEach(l => {
+      document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+    });
     document.querySelectorAll('[data-zh]').forEach(el => {
       const val = el.getAttribute('data-' + lang);
       if (val !== null) el.innerHTML = val;
     });
-
-    // update img-zone hover hint via data-hint attribute
     document.querySelectorAll('.img-zone[data-hint-zh]').forEach(el => {
-      el.setAttribute('data-hint', el.getAttribute('data-hint-' + lang));
+      el.setAttribute('data-hint', el.getAttribute('data-hint-' + lang) || el.getAttribute('data-hint-zh'));
     });
-
-    // update page title
-    document.title = lang === 'zh'
-      ? '九十花中 仁心遠揚 — 校慶義賣'
-      : 'HLHS 90th Anniversary Charity Bazaar';
+    const titles = {
+      zh: '九十花中 仁心遠揚 — 校慶義賣',
+      en: 'HLHS 90th Anniversary Charity Bazaar',
+      ja: '花蓮高中 創立90周年 チャリティーバザー'
+    };
+    document.title = titles[lang];
   }
 
   function setMode(mode) {
@@ -429,7 +433,6 @@
     document.getElementById('btn-light').classList.toggle('active', mode === 'light');
   }
 
-  // init
   setLang('zh');
   setMode('dark');
 </script>
